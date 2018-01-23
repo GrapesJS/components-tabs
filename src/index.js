@@ -30,6 +30,9 @@ export default grapesjs.plugins.add('grapesjs-tabs', (editor, opts = {}) => {
     // Tab content attribute identifier
     attrTabContent,
 
+    // Class used on tabs when active
+    classTabActive: 'tab-active',
+
     // The attribute used inside tabs as a selector for tab contents
     selectorTab: 'href',
 
