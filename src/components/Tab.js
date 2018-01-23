@@ -3,20 +3,21 @@ export default (dc, { defaultModel, defaultView, ...config }) => {
 
   dc.addType(type, {
     model: defaultModel.extend({
-      defaults: { ...defaultModel.prototype.defaults, ...config.tabProps, {
+      defaults: { ...defaultModel.prototype.defaults,
         name: 'Tab',
         draggable: false,
         droppable: false,
         copyable: false,
         removable: false,
-        script: function () {
+        script() {
         },
+        ...config.tabProps
       },
     }, {
       isComponent(el) {
         if(el.getAttribute &&
-          el.getAttribute('data-gjs-type') == burgerType) {
-          return {type: burgerType};
+          el.getAttribute('data-gjs-type') == type) {
+          return { type };
         }
       },
     }),

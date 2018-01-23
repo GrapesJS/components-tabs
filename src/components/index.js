@@ -1,4 +1,4 @@
-import Tab from './Tabs';
+import Tab from './Tab';
 
 export default (editor, config = {}) => {
   const dc = editor.DomComponents;
