@@ -8,8 +8,22 @@ export default (dc, { defaultModel, defaultView, ...config }) => {
       defaults: {
         ...defaultModel.prototype.defaults,
         name: 'Tabs',
+        'attr-tabs': config.attrTabs,
+        'attr-tab': config.attrTab,
+        'attr-tab-content': config.attrTabContent,
         script() {
-          console.log('its a tab', this);
+          var i;
+          var el = this;
+          var attrTabs = '[' + '{[ attr-tabs ]}' + ']';
+          var attrTab = '[' + '{[ attr-tab ]}' + ']';
+          var attrTabContent = '[' + '{[ attr-tab-content ]}' + ']';
+          console.log(attrTabs, attrTab, attrTabContent);
+
+          var tabContents = el.querySelector(attrTabContent) || [];
+          var tabContentLen = tabContents.length || 0;
+          for (i = 0; i < tabContents.length; i++) {
+              tabContents[i].style.display = '';
+          }
         },
         ...config.tabsProps
       },
