@@ -1,4 +1,5 @@
 import Tab from './Tab';
+import Tabs from './Tabs';
 
 export default (editor, config = {}) => {
   const dc = editor.DomComponents;
@@ -8,4 +9,5 @@ export default (editor, config = {}) => {
   const opts = { ...config,  defaultModel,  defaultView };
 
   Tab(dc, opts);
+  Tabs(dc, opts);
 }
