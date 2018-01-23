@@ -1,26 +1,21 @@
-export default (dc, { defaultModel, defaultView, ...config }) => {
+export default (dc, { linkModel, linkView, ...config }) => {
   const type = 'tab';
 
   dc.addType(type, {
-    model: defaultModel.extend({
-      defaults: { ...defaultModel.prototype.defaults,
+    model: linkModel.extend({
+      defaults: { ...linkModel.prototype.defaults,
         name: 'Tab',
-        draggable: false,
+        draggable: `[${config.attrTabs}]`,
         droppable: false,
-        copyable: false,
-        removable: false,
-        script() {
-        },
         ...config.tabProps
       },
     }, {
       isComponent(el) {
-        if(el.getAttribute &&
-          el.getAttribute('data-gjs-type') == type) {
+        if (el.hasAttribute && el.hasAttribute(config.attrTab)) {
           return { type };
         }
       },
     }),
-    view: defaultView,
+    view: linkView,
   });
 }
