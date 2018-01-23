@@ -6,7 +6,8 @@ export default (dc, { defaultModel, defaultView, ...config }) => {
     model: defaultModel.extend({
       defaults: { ...defaultModel.prototype.defaults,
         name: 'Tab Content',
-        draggable: `[${config.attrTabs}]`,
+        draggable: false,
+        copyable: false,
         ...config.tabContentProps
       },
 

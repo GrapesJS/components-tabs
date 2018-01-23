@@ -1,5 +1,6 @@
 export default (dc, { linkModel, linkView, ...config }) => {
   const type = 'tab';
+  const attrKey = config.attrTab;
 
   dc.addType(type, {
     model: linkModel.extend({
@@ -9,9 +10,15 @@ export default (dc, { linkModel, linkView, ...config }) => {
         droppable: false,
         ...config.tabProps
       },
+
+      init() {
+        const attrs = this.getAttributes();
+        attrs[attrKey] = 1;
+        this.setAttributes(attrs);
+      }
     }, {
       isComponent(el) {
-        if (el.hasAttribute && el.hasAttribute(config.attrTab)) {
+        if (el.hasAttribute && el.hasAttribute(attrKey)) {
           return { type };
         }
       },
