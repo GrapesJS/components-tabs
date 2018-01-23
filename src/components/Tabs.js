@@ -19,10 +19,11 @@ export default (dc, { defaultModel, defaultView, ...config }) => {
           var attrTabContent = '[' + '{[ attr-tab-content ]}' + ']';
           console.log(attrTabs, attrTab, attrTabContent);
 
-          var tabContents = el.querySelector(attrTabContent) || [];
+          var tabContents = el.querySelectorAll(attrTabContent) || [];
           var tabContentLen = tabContents.length || 0;
+
           for (i = 0; i < tabContents.length; i++) {
-              tabContents[i].style.display = '';
+              tabContents[i].style.display = 'none';
           }
         },
         ...config.tabsProps

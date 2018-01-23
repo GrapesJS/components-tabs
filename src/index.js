@@ -2,6 +2,10 @@ import grapesjs from 'grapesjs';
 import loadComponents from './components/index';
 import loadBlocks from './blocks';
 
+const attrTab = 'data-tab';
+const attrTabs = 'data-tabs';
+const attrTabContent = 'data-tab-content';
+
 export default grapesjs.plugins.add('grapesjs-tabs', (editor, opts = {}) => {
   const options = { ...{
     // Object to extend the default tabs block, eg. `{ label: 'Tabs', attributes: { ... } }`
@@ -14,27 +18,30 @@ export default grapesjs.plugins.add('grapesjs-tabs', (editor, opts = {}) => {
     // Object to extend the default tab properties
     tabProps: {},
 
+    // Object to extend the default tab content properties
+    tabContentProps: {},
+
     // Tabs attribute identifier (main component)
-    attrTabs: 'data-tabs',
+    attrTabs,
 
     // Tab attribute identifier
-    attrTab: 'data-tab',
+    attrTab,
 
     // Tab content attribute identifier
-    attrTabContent: 'data-tab-content',
+    attrTabContent,
 
     // The attribute used inside tabs as a selector for tab contents
     selectorTab: 'href',
 
     template: `
       <nav>
-        <a href="#tab1" data-tab>Tab 1</a>
-        <a href="#tab2" data-tab>Tab 2</a>
-        <a href="#tab3" data-tab>Tab 3</a>
+        <a href="#tab1" ${attrTab}>Tab 1</a>
+        <a href="#tab2" ${attrTab}>Tab 2</a>
+        <a href="#tab3" ${attrTab}>Tab 3</a>
       </nav>
-      <div id="tab1">Tab 1 Content<div>
-      <div id="tab2">Tab 2 Content<div>
-      <div id="tab3">Tab 3 Content<div>
+      <div id="tab1" ${attrTabContent}>Tab 1 Content</div>
+      <div id="tab2" ${attrTabContent}>Tab 2 Content</div>
+      <div id="tab3" ${attrTabContent}>Tab 3 Content</div>
     `,
   },  ...opts };
 
