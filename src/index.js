@@ -30,8 +30,14 @@ export default grapesjs.plugins.add('grapesjs-tabs', (editor, opts = {}) => {
     // Tab content attribute identifier
     attrTabContent,
 
+    // Default class to use on tab
+    classTab: 'tab',
+
     // Class used on tabs when active
     classTabActive: 'tab-active',
+
+    // Default class to use on tab content
+    classTabContent: 'tab-content',
 
     // The attribute used inside tabs as a selector for tab contents
     selectorTab: 'href',
@@ -42,9 +48,15 @@ export default grapesjs.plugins.add('grapesjs-tabs', (editor, opts = {}) => {
         <a href="#tab2" ${attrTab}>Tab 2</a>
         <a href="#tab3" ${attrTab}>Tab 3</a>
       </nav>
-      <div id="tab1" ${attrTabContent}>Tab 1 Content</div>
-      <div id="tab2" ${attrTabContent}>Tab 2 Content</div>
-      <div id="tab3" ${attrTabContent}>Tab 3 Content</div>
+      <div id="tab1" ${attrTabContent}>
+        <div>Tab 1 Content</div>
+      </div>
+      <div id="tab2" ${attrTabContent}>
+        <div>Tab 2 Content</div>
+      </div>
+      <div id="tab3" ${attrTabContent}>
+        <div>Tab 3 Content</div>
+      </div>
     `,
   },  ...opts };
 

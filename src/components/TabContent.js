@@ -1,6 +1,7 @@
 export default (dc, { defaultModel, defaultView, ...config }) => {
   const type = 'tab-content';
   const attrKey = config.attrTabContent;
+  const classKey = config.classTabContent;
 
   dc.addType(type, {
     model: defaultModel.extend({
@@ -15,6 +16,7 @@ export default (dc, { defaultModel, defaultView, ...config }) => {
         const attrs = this.getAttributes();
         attrs[attrKey] = 1;
         this.setAttributes(attrs);
+        classKey && this.addClass(classKey);
       }
     }, {
       isComponent(el) {

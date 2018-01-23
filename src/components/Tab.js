@@ -1,6 +1,7 @@
 export default (dc, { linkModel, linkView, ...config }) => {
   const type = 'tab';
   const attrKey = config.attrTab;
+  const classKey = config.classTab;
 
   dc.addType(type, {
     model: linkModel.extend({
@@ -15,6 +16,7 @@ export default (dc, { linkModel, linkView, ...config }) => {
         const attrs = this.getAttributes();
         attrs[attrKey] = 1;
         this.setAttributes(attrs);
+        classKey && this.addClass(classKey);
       }
     }, {
       isComponent(el) {
