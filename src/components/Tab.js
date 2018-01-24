@@ -7,7 +7,7 @@ export default (dc, { linkModel, linkView, ...config }) => {
     model: linkModel.extend({
       defaults: { ...linkModel.prototype.defaults,
         name: 'Tab',
-        draggable: `[${config.attrTabs}]`,
+        draggable: `[${config.attrTabContainer}]`,
         droppable: false,
         ...config.tabProps
       },

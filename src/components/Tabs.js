@@ -21,7 +21,6 @@ export default (dc, { defaultModel, defaultView, ...config }) => {
           var attrTabContent = '[' + '{[ attr-tab-content ]}' + ']';
           var classTabActive = '{[ class-tab-active ]}';
           var selectorTab = '{[ selector-tab ]}';
-          var tabs = el.querySelectorAll(attrTab) || [];
           var body = document.body;
           var matches = body.matchesSelector || body.webkitMatchesSelector
             || body.mozMatchesSelector || body.msMatchesSelector;
@@ -34,6 +33,8 @@ export default (dc, { defaultModel, defaultView, ...config }) => {
           }
 
           var activeTab = function(tabEl) {
+            var tabs = el.querySelectorAll(attrTab) || [];
+
             for (i = 0; i < tabs.length; i++) {
                 var tab = tabs[i];
                 var newClass = tab.className.replace(classTabActive, '').trim();
