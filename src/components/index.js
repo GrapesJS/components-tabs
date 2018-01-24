@@ -1,6 +1,7 @@
 import Tab from './Tab';
 import Tabs from './Tabs';
 import TabContent from './TabContent';
+import TabContainer from './TabContainer';
 
 export default (editor, config = {}) => {
   const dc = editor.DomComponents;
@@ -21,4 +22,5 @@ export default (editor, config = {}) => {
   Tab(dc, opts);
   Tabs(dc, opts);
   TabContent(dc, opts);
+  TabContainer(dc, opts);
 }

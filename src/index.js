@@ -5,6 +5,7 @@ import loadBlocks from './blocks';
 const attrTab = 'data-tab';
 const attrTabs = 'data-tabs';
 const attrTabContent = 'data-tab-content';
+const attrTabContainer = 'data-tab-container';
 
 export default grapesjs.plugins.add('grapesjs-tabs', (editor, opts = {}) => {
   const options = { ...{
@@ -21,6 +22,9 @@ export default grapesjs.plugins.add('grapesjs-tabs', (editor, opts = {}) => {
     // Object to extend the default tab content properties
     tabContentProps: {},
 
+    // Object to extend the default tab container properties
+    tabContainerProps: {},
+
     // Tabs attribute identifier (main component)
     attrTabs,
 
@@ -29,6 +33,9 @@ export default grapesjs.plugins.add('grapesjs-tabs', (editor, opts = {}) => {
 
     // Tab content attribute identifier
     attrTabContent,
+
+    // Tab container attribute identifier
+    attrTabContainer,
 
     // Default class to use on tab
     classTab: 'tab',
@@ -39,11 +46,14 @@ export default grapesjs.plugins.add('grapesjs-tabs', (editor, opts = {}) => {
     // Default class to use on tab content
     classTabContent: 'tab-content',
 
+    // Default class to use on tab container
+    classTabContainer: 'tab-container',
+
     // The attribute used inside tabs as a selector for tab contents
     selectorTab: 'href',
 
     template: `
-      <nav>
+      <nav ${attrTabContainer}>
         <a href="#tab1" ${attrTab}>Tab 1</a>
         <a href="#tab2" ${attrTab}>Tab 2</a>
         <a href="#tab3" ${attrTab}>Tab 3</a>

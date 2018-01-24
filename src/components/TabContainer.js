@@ -1,16 +1,17 @@
 export default (dc, { defaultModel, defaultView, ...config }) => {
-  const type = 'tab-content';
-  const attrKey = config.attrTabContent;
-  const classKey = config.classTabContent;
+  const type = 'tab-container';
+  const attrKey = config.attrTabContainer;
+  const classKey = config.classTabContainer;
 
   dc.addType(type, {
     model: defaultModel.extend({
       defaults: { ...defaultModel.prototype.defaults,
-        name: 'Tab Content',
-        draggable: false,
+        name: 'Tab Container',
+        draggable: `[${config.attrTabs}]`,
+        droppable: `[${config.attrTab}]`,
         copyable: false,
         removable: false,
-        ...config.tabContentProps
+        ...config.tabContainerProps
       },
 
       init() {
