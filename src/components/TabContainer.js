@@ -26,9 +26,16 @@ export default (dc, { defaultModel, defaultView, ...config }) => {
         this.listenTo(tabs, 'remove', this.onRemove);
       },
 
-      onRemove(model) {
-        const content = model.tabContent;
-        content && content.collection.remove(content);
+      onRemove(model, value, opts = {}) {
+        const tabContent = model.tabContent;
+
+        // I'll remove the tabContent only if I'm sure that tab is
+        // removed from the collection
+        tabContent && setTimeout(() => {
+          const coll = model.collection;
+          const tabColl = tabContent.collection;
+          !coll && tabColl && tabColl.remove(tabContent);
+        }, 0);
       },
 
       onAdd(model, value, opts = {}) {
