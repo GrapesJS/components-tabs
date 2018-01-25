@@ -97,7 +97,7 @@ Install dependencies
 $ npm i
 ```
 
-The plugin relies on GrapesJS via `peerDependencies` so you have to install it manually (without adding it to package.json)
+The plugin relies on GrapesJS via `peerDependencies` so you have to install it manually
 
 ```sh
 $ npm i grapesjs --no-save
