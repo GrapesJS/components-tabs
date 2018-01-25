@@ -7,11 +7,12 @@ Simple tabs component plugin for GrapesJS
 
 * Plugin name: `grapesjs-tabs`
 * Components
-  * `new-component1`
-  * `new-component2`
+  * `tabs` - Main tabs component
+  * `tab-container` - Component which contains single tabs
+  * `tab` - Single tab component
+  * `tab-content` - Tab's content
 * Blocks
-  * `new-block1`
-  * `new-block1`
+  * `tabs`
 
 
 
