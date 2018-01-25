@@ -33,23 +33,28 @@ export default (dc, { defaultModel, defaultView, ...config }) => {
 
       onAdd(model, value, opts = {}) {
         const comps = this.components();
-        const counter = comps.counter || comps.length;
         const attrs = model.getAttributes();
-        comps.counter = counter + 1;
 
         if (!model.tabContent && !opts.avoidStore) {
+          const selCont = attrs[selectorTab];
           const modelTabs = this.closest(`[${attrTabs}]`);
+          const modelTabsV = modelTabs.view;
+          const tabContEl = selCont && modelTabs.view.$el.find(selCont);
 
-          if (modelTabs) {
-            const tabCont = modelTabs.components().add({
+          // If the tab content was found I'll attach it to the tab model
+          // otherwise I'll create e new one
+          if (tabContEl.length) {
+            model.tabContent = tabContEl.data('model');
+          } else {
+            const tabContent = modelTabs.components().add({
               type: 'tab-content',
               components: config.templateTabContent,
             });
-            const id = tabCont.getId();
-            tabCont.addAttributes({ id });
+            const id = tabContent.getId();
+            tabContent.addAttributes({ id });
             model.addAttributes({ [selectorTab]: `#${id}` });
-            model.tabContent = tabCont;
-            tabCont.getEl().style.display = 'none';
+            model.tabContent = tabContent;
+            tabContent.getEl().style.display = 'none';
           }
         }
       }

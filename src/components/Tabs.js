@@ -76,9 +76,14 @@ export default (dc, { defaultModel, defaultView, ...config }) => {
     view: defaultView.extend({
       init() {
         const comps = this.model.components();
-
-        // Add a basic template if it's not yet initialized
         !comps.length && comps.add(config.template);
+      },
+
+      onRender() {
+        const tabContainer = this.model.find(`[${config.attrTabContainer}]`)[0];
+        tabContainer && tabContainer.components().each(tab => {
+          tabContainer.onAdd(tab);
+        });
       }
     })
   });
