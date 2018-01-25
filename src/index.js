@@ -52,6 +52,7 @@ export default grapesjs.plugins.add('grapesjs-tabs', (editor, opts = {}) => {
     // The attribute used inside tabs as a selector for tab contents
     selectorTab: 'href',
 
+    // Default tabs template
     template: `
       <nav ${attrTabContainer}>
         <a href="#tab1" ${attrTab}>Tab 1</a>
@@ -68,6 +69,9 @@ export default grapesjs.plugins.add('grapesjs-tabs', (editor, opts = {}) => {
         <div>Tab 3 Content</div>
       </div>
     `,
+
+    // Default template for new added tab contents
+    templateTabContent: `<div>New Tab Content</div>`,
   },  ...opts };
 
   // Add components
