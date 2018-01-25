@@ -22,9 +22,23 @@ Simple tabs component plugin for GrapesJS
 
 |Option|Description|Default|
 |-|-|-
-|`option1`|Description option|`default value`|
-
-
+| `tabsBlock` | Object to extend the default tabs block, eg. `{ label: 'Tabs', attributes: { ... } }`. Pass a falsy value to avoid adding the block| `{}` |
+| `tabsProps` | Object to extend the default tabs properties, eg. `{ name: 'My Tabs', droppable: false, ... }` | `{}` |
+| `tabProps` | Object to extend the default tab properties | `{}` |
+| `tabContentProps` | Object to extend the default tab content properties | `{}` |
+| `tabContainerProps` | Object to extend the default tab container properties | `{}` |
+| `attrTabs` | Tabs attribute identifier (main component) | `data-tabs` |
+| `attrTab` | Tab attribute identifier | `data-tab` |
+| `attrTabContent` | Tab content attribute identifier | `data-tab-content` |
+| `attrTabContainer` | Tab container attribute identifier | `data-tab-container` |
+| `classTab` | Default class to use on tab | `tab` |
+| `classTabActive` | Class used on tabs when active | `tab-active` |
+| `classTabContent` | Default class to use on tab content | `tab-content` |
+| `classTabContainer` | Default class to use on tab container | `tab-container` |
+| `selectorTab` | The attribute used inside tabs as a selector for tab contents | `href` |
+| `template` | Default tabs template | `<nav ....` (check the source) |
+| `templateTabContent` | Default template for new added tab contents | `<div>New Tab Content</div>` |
+| `style` | Default style for tabs | `.tab { ....` (check the source) |
 
 
 
