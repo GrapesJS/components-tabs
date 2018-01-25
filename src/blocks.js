@@ -1,7 +1,10 @@
 export default (editor, config = {}) => {
   const bm = editor.BlockManager;
   const tabsBlock = config.tabsBlock;
+  const style = config.style;
   const type = 'tabs';
+  const content = `<div data-gjs-type="${type}"></div>
+    ${style ? `<style>${style}</style>` : ''}`;
 
   tabsBlock && bm.add(type, {
     label: `
@@ -12,7 +15,7 @@ export default (editor, config = {}) => {
       </svg>
       <div class="gjs-block-label">Tabs</div>
     `,
-    content: { type },
+    content,
     ...tabsBlock
   });
 }
