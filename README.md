@@ -5,6 +5,13 @@ Simple tabs component plugin for GrapesJS
 <p align="center"><img src="http://grapesjs.com/img/tabs.gif" alt="GrapesJS Tabs" align="center"/></p>
 
 
+[Demo](http://grapesjs.com/demo.html)
+
+
+## Requirements
+* GrapesJS v0.13.8 or higher
+
+
 ## Summary
 
 * Plugin name: `grapesjs-tabs`
