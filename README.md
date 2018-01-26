@@ -2,6 +2,8 @@
 
 Simple tabs component plugin for GrapesJS
 
+<p align="center"><img src="http://grapesjs.com/img/tabs.gif" alt="GrapesJS Tabs" align="center"/></p>
+
 
 ## Summary
 
