@@ -1,4 +1,3 @@
-import grapesjs from 'grapesjs';
 import loadComponents from './components/index';
 import loadBlocks from './blocks';
 
@@ -7,7 +6,7 @@ const attrTabs = 'data-tabs';
 const attrTabContent = 'data-tab-content';
 const attrTabContainer = 'data-tab-container';
 
-export default grapesjs.plugins.add('grapesjs-tabs', (editor, opts = {}) => {
+export default (editor, opts = {}) => {
   const options = { ...{
     // Object to extend the default tabs block, eg. `{ label: 'Tabs', attributes: { ... } }`
     // Pass a falsy value to avoid adding the block
@@ -107,4 +106,4 @@ export default grapesjs.plugins.add('grapesjs-tabs', (editor, opts = {}) => {
 
   // Add blocks
   loadBlocks(editor, options);
-});
+};
