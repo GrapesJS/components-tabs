@@ -106,13 +106,7 @@ Install dependencies
 $ npm i
 ```
 
-The plugin relies on GrapesJS via `peerDependencies` so you have to install it manually
-
-```sh
-$ npm i grapesjs --no-save
-```
-
-Start the dev server
+Start the development server
 
 ```sh
 $ npm start
