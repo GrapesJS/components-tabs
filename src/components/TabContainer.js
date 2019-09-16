@@ -39,18 +39,16 @@ export default (dc, { defaultModel, defaultView, ...config }) => {
       },
 
       onAdd(model, value, opts = {}) {
-        const comps = this.components();
         const attrs = model.getAttributes();
 
         if (!model.tabContent && !opts.avoidStore) {
           const selCont = attrs[selectorTab];
           const modelTabs = this.closest(`[${attrTabs}]`);
-          const modelTabsV = modelTabs.view;
           const tabContEl = selCont && modelTabs.view.$el.find(selCont);
 
           // If the tab content was found I'll attach it to the tab model
           // otherwise I'll create e new one
-          if (tabContEl.length) {
+          if (tabContEl && tabContEl.length) {
             model.tabContent = tabContEl.data('model');
           } else {
             const tabContent = modelTabs.components().add({
