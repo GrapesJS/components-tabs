@@ -5,8 +5,8 @@
   "main": "dist/grapesjs-tabs.min.js",
   "scripts": {
     "lint": "eslint src",
-    "build": "grapesjs-dev-helper build",
-    "start": "grapesjs-dev-helper serve"
+    "build": "grapesjs-cli build",
+    "start": "grapesjs-cli serve"
   },
   "repository": {
     "type": "git",
@@ -21,6 +21,6 @@
   "author": "Artur Arseniev",
   "license": "BSD-3-Clause",
   "devDependencies": {
-    "grapesjs-dev-helper": "^1.0.3"
+    "grapesjs-cli": "^1.0.11"
   }
 }
