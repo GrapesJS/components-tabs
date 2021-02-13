@@ -9,7 +9,9 @@ export default (dc, config) => {
     const classTabActive = '{[ class-tab-active ]}';
     const selectorTab = '{[ selector-tab ]}';
     const { history } = window;
-    const { body } = document;
+    const attrTabindex =  'tabIndex';
+    const attrSelected =  'ariaSelected';
+    const { body, location } = document;
     const matches = body.matchesSelector || body.webkitMatchesSelector
       || body.mozMatchesSelector || body.msMatchesSelector;
     const each = (items, clb) => {
@@ -24,9 +26,13 @@ export default (dc, config) => {
     const activeTab = (tabEl) => {
       each(el.querySelectorAll(attrTab), (item) => {
         item.className = item.className.replace(classTabActive, '').trim();
+        item[attrTabindex] = '-1';
+        item[attrSelected] = 'false';
       });
       hideContents();
       tabEl.className += ' ' + classTabActive;
+      tabEl[attrTabindex] = '0';
+      tabEl[attrSelected] = 'true';
       const tabContSelector = tabEl.getAttribute(selectorTab);
       const tabContent = el.querySelector(tabContSelector);
       tabContent && (tabContent.style.display = '');
@@ -55,11 +61,11 @@ export default (dc, config) => {
     model: {
       defaults: {
         name: 'Tabs',
-        'attr-tabs': config.attrTabs,
         'attr-tab': config.attrTab,
         'attr-tab-content': config.attrTabContent,
         'class-tab-active': config.classTabActive,
         'selector-tab': config.selectorTab,
+        components: config.template,
         script,
         ...config.tabsProps
       },
@@ -72,11 +78,6 @@ export default (dc, config) => {
     },
 
     view: {
-      init() {
-        const comps = this.model.components();
-        !comps.length && comps.add(config.template);
-      },
-
       onRender() {
         const tabContainer = this.model.find(`[${config.attrTabContainer}]`)[0];
         tabContainer && tabContainer.components().each(tab => {

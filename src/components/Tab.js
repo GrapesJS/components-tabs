@@ -17,8 +17,6 @@ export default (dc, { linkModel, ...config }) => {
         draggable: `[data-gjs-type="${config.typeTabContainer}"]`,
         attributes: {
           role,
-          tabindex: '-1',
-          'aria-selected': 'false',
           // aria-controls refer to the id of the tab panel
         },
         ...config.tabProps
