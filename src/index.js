@@ -2,7 +2,6 @@ import loadComponents from './components/index';
 import loadBlocks from './blocks';
 
 const attrTab = 'data-tab';
-const attrTabContent = 'data-tab-content';
 
 export default (editor, opts = {}) => {
   const options = { ...{
@@ -24,9 +23,6 @@ export default (editor, opts = {}) => {
 
     // Tab attribute identifier
     attrTab,
-
-    // Tab content attribute identifier
-    attrTabContent,
 
     // Default class to use on tab
     classTab: 'tab',
@@ -62,13 +58,13 @@ export default (editor, opts = {}) => {
         <a href="#tab2" ${attrTab}>Tab 2</a>
         <a href="#tab3" ${attrTab}>Tab 3</a>
       </nav>
-      <div id="tab1" ${attrTabContent}>
+      <div id="tab1" data-gjs-type="tab-content">
         <div>Tab 1 Content</div>
       </div>
-      <div id="tab2" ${attrTabContent}>
+      <div id="tab2" data-gjs-type="tab-content">
         <div>Tab 2 Content</div>
       </div>
-      <div id="tab3" ${attrTabContent}>
+      <div id="tab3" data-gjs-type="tab-content">
         <div>Tab 3 Content</div>
       </div>
     `,
