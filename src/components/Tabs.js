@@ -1,4 +1,4 @@
-export default (dc, { typeTab, typeTabContent, ...config}) => {
+export default (dc, { typeTab, typeTabContent, typeTabContents, ...config}) => {
   const type = config.typeTabs;
 
   const script = function(props) {
@@ -69,19 +69,32 @@ export default (dc, { typeTab, typeTabContent, ...config}) => {
               `<span aria-controls="tab${i}" data-gjs-type="${typeTab}">Tab ${i}</span>`
             ).join('')}
           </nav>
-          <div data-gjs-type="${config.typeTabContents}">
-            ${defTabs.map(i => `
-              <div id="tab${i}" data-gjs-type="${typeTabContent}">
-                <div>Tab ${i} Content</div>
-              </div>
-            `).join('')}
+          <div data-gjs-type="${typeTabContents}">
           </div>
         `,
         ...config.tabsProps
       },
+      /**
+       ${defTabs.map(i => `
+              <div id="tab${i}" data-gjs-type="${typeTabContent}">
+                <div>Tab ${i} Content</div>
+              </div>
+            `).join('')}
+       */
+      init() {
+        this.findTabs().map(t => t.__initTab());
+      },
+
+      findTabs() {
+        return this.findType(typeTab);
+      },
 
       findContents() {
         return this.findType(typeTabContent);
+      },
+
+      getContentsType() {
+        return this.findType(typeTabContents)[0];
       },
     },
   });
