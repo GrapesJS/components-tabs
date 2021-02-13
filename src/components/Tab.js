@@ -1,5 +1,8 @@
+import { type as tabContainerType } from './TabContainer';
+
+export const type = 'tab';
+
 export default (dc, { linkModel, ...config }) => {
-  const type = 'tab';
   const attrKey = config.attrTab;
   const classKey = config.classTab;
   const selectorTab = config.selectorTab;
@@ -12,8 +15,7 @@ export default (dc, { linkModel, ...config }) => {
     model: {
       defaults: {
         name: 'Tab',
-        draggable: `[${config.attrTabContainer}]`,
-        droppable: false,
+        draggable: `[data-gjs-type="${tabContainerType}"]`,
         ...config.tabProps
       },
 
