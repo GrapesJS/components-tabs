@@ -3,46 +3,40 @@ export default (dc, config) => {
   const attrTabs = config.attrTabs;
 
   const script = function() {
-    var i;
-    var el = this;
-    var attrTabs = '[' + '{[ attr-tabs ]}' + ']';
-    var attrTab = '[' + '{[ attr-tab ]}' + ']';
-    var attrTabContent = '[' + '{[ attr-tab-content ]}' + ']';
-    var classTabActive = '{[ class-tab-active ]}';
-    var selectorTab = '{[ selector-tab ]}';
-    var body = document.body;
-    var matches = body.matchesSelector || body.webkitMatchesSelector
+    let i;
+    const el = this;
+    const attrTab = '[' + '{[ attr-tab ]}' + ']';
+    const attrTabContent = '[' + '{[ attr-tab-content ]}' + ']';
+    const classTabActive = '{[ class-tab-active ]}';
+    const selectorTab = '{[ selector-tab ]}';
+    const { body } = document;
+    const matches = body.matchesSelector || body.webkitMatchesSelector
       || body.mozMatchesSelector || body.msMatchesSelector;
-
-    var hideContents = function() {
-      var tabContents = el.querySelectorAll(attrTabContent) || [];
-      for (i = 0; i < tabContents.length; i++) {
-          tabContents[i].style.display = 'none';
-      }
+    const each = (items, clb) => {
+      const arr = items || [];
+      for (i = 0; i < arr.length; i++) clb(arr[i], i)
     }
 
-    var activeTab = function(tabEl) {
-      var tabs = el.querySelectorAll(attrTab) || [];
+    const hideContents = () => {
+      each(el.querySelectorAll(attrTabContent), i => i.style.display = 'none');
+    }
 
-      for (i = 0; i < tabs.length; i++) {
-          var tab = tabs[i];
-          var newClass = tab.className.replace(classTabActive, '').trim();
-          tab.className = newClass;
-      }
-
+    const activeTab = (tabEl) => {
+      each(el.querySelectorAll(attrTab), (item) => {
+        item.className = item.className.replace(classTabActive, '').trim();
+      });
       hideContents();
       tabEl.className += ' ' + classTabActive;
-      var tabContSelector = tabEl.getAttribute(selectorTab);
-      var tabContent = el.querySelector(tabContSelector);
+      const tabContSelector = tabEl.getAttribute(selectorTab);
+      const tabContent = el.querySelector(tabContSelector);
       tabContent && (tabContent.style.display = '');
     };
 
-    var tabToActive = el.querySelector('.' + classTabActive + attrTab);
+    let tabToActive = el.querySelector('.' + classTabActive + attrTab);
     tabToActive = tabToActive || el.querySelector(attrTab);
     tabToActive && activeTab(tabToActive);
 
-    el.addEventListener('click', function(e) {
-      var target = e.target;
+    el.addEventListener('click', ({ target }) => {
       matches.call(target, attrTab) && activeTab(target);
     });
   };
