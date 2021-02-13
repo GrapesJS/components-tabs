@@ -1,3 +1,5 @@
+export const role = 'tab';
+
 export default (dc, { linkModel, ...config }) => {
   const type = config.typeTab;
   const attrKey = config.attrTab;
@@ -13,6 +15,12 @@ export default (dc, { linkModel, ...config }) => {
       defaults: {
         name: 'Tab',
         draggable: `[data-gjs-type="${config.typeTabContainer}"]`,
+        attributes: {
+          role,
+          tabindex: '-1',
+          'aria-selected': 'false',
+          // aria-controls refer to the id of the tab panel
+        },
         ...config.tabProps
       },
 

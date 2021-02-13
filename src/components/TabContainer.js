@@ -1,3 +1,5 @@
+export const role = 'tablist';
+
 export default (dc, config) => {
   const type = config.typeTabContainer;
   const attrTabs = config.attrTabs;
@@ -15,6 +17,7 @@ export default (dc, config) => {
         droppable: `[data-gjs-type="${config.typeTab}"]`,
         copyable: false,
         removable: false,
+        attributes: { role },
         ...config.tabContainerProps
       },
 

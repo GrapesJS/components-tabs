@@ -1,3 +1,5 @@
+export const role = 'tabpanel';
+
 export default (dc, config) => {
   const attrKey = config.attrTabContent;
   const classKey = config.classTabContent;
@@ -11,6 +13,7 @@ export default (dc, config) => {
         draggable: false,
         copyable: false,
         removable: false,
+        attributes: { role },
         ...config.tabContentProps
       },
 
