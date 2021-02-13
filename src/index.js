@@ -3,7 +3,6 @@ import loadBlocks from './blocks';
 
 const attrTab = 'data-tab';
 const attrTabContent = 'data-tab-content';
-const attrTabContainer = 'data-tab-container';
 
 export default (editor, opts = {}) => {
   const options = { ...{
@@ -28,9 +27,6 @@ export default (editor, opts = {}) => {
 
     // Tab content attribute identifier
     attrTabContent,
-
-    // Tab container attribute identifier
-    attrTabContainer,
 
     // Default class to use on tab
     classTab: 'tab',
@@ -61,7 +57,7 @@ export default (editor, opts = {}) => {
 
     // Default tabs template
     template: `
-      <nav ${attrTabContainer}>
+      <nav data-gjs-type="tab-container">
         <a href="#tab1" ${attrTab}>Tab 1</a>
         <a href="#tab2" ${attrTab}>Tab 2</a>
         <a href="#tab3" ${attrTab}>Tab 3</a>

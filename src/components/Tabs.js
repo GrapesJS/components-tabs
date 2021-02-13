@@ -58,8 +58,6 @@ export default (dc, config) => {
     model: {
       defaults: {
         name: 'Tabs',
-        'attr-tab': config.attrTab,
-        'attr-tab-content': config.attrTabContent,
         'class-tab-active': config.classTabActive,
         'selector-tab': config.selectorTab,
         components: config.template,
@@ -70,7 +68,7 @@ export default (dc, config) => {
 
     view: {
       onRender() {
-        const tabContainer = this.model.find(`[${config.attrTabContainer}]`)[0];
+        const tabContainer = this.model.findType(config.typeTabContainer)[0];
         tabContainer && tabContainer.components().each(tab => {
           tabContainer.onAdd(tab);
         });

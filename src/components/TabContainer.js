@@ -2,14 +2,11 @@ export const role = 'tablist';
 
 export default (dc, config) => {
   const type = config.typeTabContainer;
-  const attrKey = config.attrTabContainer;
   const classKey = config.classTabContainer;
   const selectorTab = config.selectorTab;
   const typeTabs = config.typeTabs;
 
   dc.addType(type, {
-    isComponent: el => el.hasAttribute && el.hasAttribute(attrKey),
-
     model: {
       defaults: {
         name: 'Tab Container',
@@ -22,9 +19,6 @@ export default (dc, config) => {
       },
 
       init() {
-        const attrs = this.getAttributes();
-        attrs[attrKey] = 1;
-        this.setAttributes(attrs);
         classKey && this.addClass(classKey);
         const tabs = this.components();
         this.listenTo(tabs, 'add', this.onAdd);
