@@ -1,4 +1,4 @@
-export default (dc, { defaultModel, defaultView, ...config }) => {
+export default (dc, config) => {
   const type = 'tab-container';
   const attrTabs = config.attrTabs;
   const attrKey = config.attrTabContainer;
@@ -6,8 +6,10 @@ export default (dc, { defaultModel, defaultView, ...config }) => {
   const selectorTab = config.selectorTab;
 
   dc.addType(type, {
-    model: defaultModel.extend({
-      defaults: { ...defaultModel.prototype.defaults,
+    isComponent: el => el.hasAttribute && el.hasAttribute(attrKey),
+
+    model: {
+      defaults: {
         name: 'Tab Container',
         draggable: `[${attrTabs}]`,
         droppable: `[${config.attrTab}]`,
@@ -63,14 +65,6 @@ export default (dc, { defaultModel, defaultView, ...config }) => {
           }
         }
       }
-    }, {
-      isComponent(el) {
-        if (el.hasAttribute && el.hasAttribute(attrKey)) {
-          return { type };
-        }
-      },
-    }),
-
-    view: defaultView,
+    },
   });
 }
