@@ -53,7 +53,7 @@ export default (editor, opts = {}) => {
     typeTabContents: 'tab-contents',
 
     // Default template for new added tab contents
-    templateTabContent: `<div>New Tab Content</div>`,
+    templateTabContent: (tab) => `<div>Tab ${tab.index() + 1} Content</div>`,
 
     style: `
       .tab {

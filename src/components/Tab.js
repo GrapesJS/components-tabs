@@ -30,7 +30,7 @@ export default (dc, { defaultModel, typeTabs, ...config }) => {
           const cnts = tabs.getContentsType();
           const tabContent = cnts.append({
             type: config.typeTabContent,
-            components: config.templateTabContent,
+            components: config.templateTabContent(this),
           })[0];
           const id = tabContent.getId();
           const tabId = this.getId();
