@@ -14,6 +14,7 @@ export default (dc, config) => {
         droppable: `[data-gjs-type="${config.typeTab}"]`,
         copyable: false,
         removable: false,
+        highlightable: false,
         attributes: { role },
         ...config.tabContainerProps
       },
@@ -23,6 +24,7 @@ export default (dc, config) => {
         const tabs = this.components();
         // this.listenTo(tabs, 'add', this.onAdd);
         // this.listenTo(tabs, 'remove', this.onRemove);
+        // aria-labelledby
       },
 
       onRemove(model) {

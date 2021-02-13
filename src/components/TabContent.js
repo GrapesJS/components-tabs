@@ -10,6 +10,7 @@ export default (dc, config) => {
         draggable: false,
         copyable: false,
         removable: false,
+        highlightable: false,
         attributes: { role },
         ...config.tabContentProps
       },
