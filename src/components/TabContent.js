@@ -1,11 +1,13 @@
-export default (dc, { defaultModel, defaultView, ...config }) => {
+export default (dc, config) => {
   const type = 'tab-content';
   const attrKey = config.attrTabContent;
   const classKey = config.classTabContent;
 
   dc.addType(type, {
-    model: defaultModel.extend({
-      defaults: { ...defaultModel.prototype.defaults,
+    isComponent: el => el.hasAttribute && el.hasAttribute(attrKey),
+
+    model: {
+      defaults: {
         name: 'Tab Content',
         draggable: false,
         copyable: false,
@@ -19,14 +21,6 @@ export default (dc, { defaultModel, defaultView, ...config }) => {
         this.setAttributes(attrs);
         classKey && this.addClass(classKey);
       }
-    }, {
-      isComponent(el) {
-        if (el.hasAttribute && el.hasAttribute(attrKey)) {
-          return { type };
-        }
-      },
-    }),
-
-    view: defaultView,
+    },
   });
 }
