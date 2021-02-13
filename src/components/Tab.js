@@ -1,12 +1,16 @@
-export default (dc, { linkModel, linkView, ...config }) => {
+export default (dc, { linkModel, ...config }) => {
   const type = 'tab';
   const attrKey = config.attrTab;
   const classKey = config.classTab;
   const selectorTab = config.selectorTab;
 
   dc.addType(type, {
-    model: linkModel.extend({
-      defaults: { ...linkModel.prototype.defaults,
+    extend: 'link',
+
+    isComponent: el => el.hasAttribute && el.hasAttribute(attrKey),
+
+    model: {
+      defaults: {
         name: 'Tab',
         draggable: `[${config.attrTabContainer}]`,
         droppable: false,
@@ -25,13 +29,6 @@ export default (dc, { linkModel, linkView, ...config }) => {
         cloned.addAttributes({ [selectorTab]: '' });
         return cloned;
       }
-    }, {
-      isComponent(el) {
-        if (el.hasAttribute && el.hasAttribute(attrKey)) {
-          return { type };
-        }
-      },
-    }),
-    view: linkView,
+    },
   });
 }
