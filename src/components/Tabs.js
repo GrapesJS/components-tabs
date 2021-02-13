@@ -3,7 +3,6 @@ export default (dc, config) => {
   const attrTabs = config.attrTabs;
 
   const script = function() {
-    let i;
     const el = this;
     const attrTab = '[' + '{[ attr-tab ]}' + ']';
     const attrTabContent = '[' + '{[ attr-tab-content ]}' + ']';
@@ -14,7 +13,7 @@ export default (dc, config) => {
       || body.mozMatchesSelector || body.msMatchesSelector;
     const each = (items, clb) => {
       const arr = items || [];
-      for (i = 0; i < arr.length; i++) clb(arr[i], i)
+      for (let i = 0; i < arr.length; i++) clb(arr[i], i)
     }
 
     const hideContents = () => {
