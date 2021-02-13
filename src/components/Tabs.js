@@ -8,6 +8,7 @@ export default (dc, config) => {
     const attrTabContent = '[' + '{[ attr-tab-content ]}' + ']';
     const classTabActive = '{[ class-tab-active ]}';
     const selectorTab = '{[ selector-tab ]}';
+    const { history } = window;
     const { body } = document;
     const matches = body.matchesSelector || body.webkitMatchesSelector
       || body.mozMatchesSelector || body.msMatchesSelector;
@@ -35,8 +36,16 @@ export default (dc, config) => {
     tabToActive = tabToActive || el.querySelector(attrTab);
     tabToActive && activeTab(tabToActive);
 
-    el.addEventListener('click', ({ target }) => {
-      matches.call(target, attrTab) && activeTab(target);
+    el.addEventListener('click', (ev) => {
+      const { target } = ev;
+      if (matches.call(target, attrTab)) {
+        ev.preventDefault();
+        activeTab(target);
+        const hash = target.getAttribute('href');
+        try {
+          history && history.pushState(null, null, hash);
+        } catch (e) {}
+      }
     });
   };
 
