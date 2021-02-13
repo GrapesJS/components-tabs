@@ -46,24 +46,6 @@ export default (editor, opts = {}) => {
     // TabContent component id
     typeTabContent: 'tab-content',
 
-    // Default tabs template
-    template: `
-      <nav data-gjs-type="tab-container">
-        <span aria-controls="tab1" data-gjs-type="tab">Tab 1</span>
-        <span aria-controls="tab2" data-gjs-type="tab">Tab 2</span>
-        <span aria-controls="tab3" data-gjs-type="tab">Tab 3</span>
-      </nav>
-      <div id="tab1" data-gjs-type="tab-content">
-        <div>Tab 1 Content</div>
-      </div>
-      <div id="tab2" data-gjs-type="tab-content">
-        <div>Tab 2 Content</div>
-      </div>
-      <div id="tab3" data-gjs-type="tab-content">
-        <div>Tab 3 Content</div>
-      </div>
-    `,
-
     // Default template for new added tab contents
     templateTabContent: `<div>New Tab Content</div>`,
 

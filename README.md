@@ -41,7 +41,6 @@ Simple tabs component plugin for GrapesJS
 | `classTabContent` | Default class to use on tab content | `tab-content` |
 | `classTabContainer` | Default class to use on tab container | `tab-container` |
 | `selectorTab` | The attribute used inside tabs as a selector for tab contents | `href` |
-| `template` | Default tabs template | `<nav ....` (check the source) |
 | `templateTabContent` | Default template for new added tab contents | `<div>New Tab Content</div>` |
 | `style` | Default style for tabs | `.tab { ....` (check the source) |
 

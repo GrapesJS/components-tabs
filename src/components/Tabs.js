@@ -1,4 +1,4 @@
-export default (dc, config) => {
+export default (dc, { typeTab, typeTabContent, ...config}) => {
   const type = config.typeTabs;
 
   const script = function(props) {
@@ -60,9 +60,24 @@ export default (dc, config) => {
         name: 'Tabs',
         classactive: config.classTabActive,
         selectortab: config.selectorTab,
-        components: config.template,
-        script,
         'script-props': ['classactive', 'selectortab'],
+        script,
+        components: `
+          <nav data-gjs-type="tab-container">
+            <span aria-controls="tab1" data-gjs-type="tab">Tab 1</span>
+            <span aria-controls="tab2" data-gjs-type="tab">Tab 2</span>
+            <span aria-controls="tab3" data-gjs-type="tab">Tab 3</span>
+          </nav>
+          <div id="tab1" data-gjs-type="tab-content">
+            <div>Tab 1 Content</div>
+          </div>
+          <div id="tab2" data-gjs-type="tab-content">
+            <div>Tab 2 Content</div>
+          </div>
+          <div id="tab3" data-gjs-type="tab-content">
+            <div>Tab 3 Content</div>
+          </div>
+        `,
         ...config.tabsProps
       },
     },
