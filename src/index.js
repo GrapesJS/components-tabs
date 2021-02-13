@@ -51,6 +51,12 @@ export default (editor, opts = {}) => {
     // The attribute used inside tabs as a selector for tab contents
     selectorTab: 'href',
 
+    // Tab component id
+    typeTab: 'tab',
+
+    // TabContainer component id
+    typeTabContainer: 'tab-container',
+
     // Default tabs template
     template: `
       <nav ${attrTabContainer}>

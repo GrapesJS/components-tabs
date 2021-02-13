@@ -1,6 +1,5 @@
-export const type = 'tab-container';
-
 export default (dc, config) => {
+  const type = config.typeTabContainer;
   const attrTabs = config.attrTabs;
   const attrKey = config.attrTabContainer;
   const classKey = config.classTabContainer;
