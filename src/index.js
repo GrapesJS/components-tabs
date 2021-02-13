@@ -52,6 +52,9 @@ export default (editor, opts = {}) => {
     selectorTab: 'href',
 
     // Tab component id
+    typeTabs: 'tabs',
+
+    // Tab component id
     typeTab: 'tab',
 
     // TabContainer component id

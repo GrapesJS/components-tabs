@@ -11,8 +11,8 @@ export default (dc, config) => {
     model: {
       defaults: {
         name: 'Tab Container',
-        draggable: `[${attrTabs}]`,
-        droppable: `[${config.attrTab}]`,
+        draggable: `[data-gjs-type="${config.typeTabs}"]`,
+        droppable: `[data-gjs-type="${config.typeTab}"]`,
         copyable: false,
         removable: false,
         ...config.tabContainerProps
