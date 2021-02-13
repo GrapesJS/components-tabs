@@ -1,13 +1,10 @@
 export const role = 'tab';
 
-export default (dc, { linkModel, ...config }) => {
-  const type = config.typeTab;
+export default (dc, { defaultModel, ...config }) => {
   const classKey = config.classTab;
   const selectorTab = config.selectorTab;
 
-  dc.addType(type, {
-    extend: 'link',
-
+  dc.addType(config.typeTab, {
     model: {
       defaults: {
         name: 'Tab',
@@ -24,7 +21,7 @@ export default (dc, { linkModel, ...config }) => {
       },
 
       clone() {
-        const cloned = linkModel.prototype.clone.apply(this, arguments);
+        const cloned = defaultModel.prototype.clone.apply(this, arguments);
         cloned.addAttributes({ [selectorTab]: '' });
         return cloned;
       }

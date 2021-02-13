@@ -32,7 +32,7 @@ export default (editor, opts = {}) => {
     classTabContainer: 'tab-container',
 
     // The attribute used inside tabs as a selector for tab contents
-    selectorTab: 'href',
+    selectorTab: 'aria-controls',
 
     // Tabs component id
     typeTabs: 'tabs',
@@ -49,9 +49,9 @@ export default (editor, opts = {}) => {
     // Default tabs template
     template: `
       <nav data-gjs-type="tab-container">
-        <a href="#tab1" data-gjs-type="tab">Tab 1</a>
-        <a href="#tab2" data-gjs-type="tab">Tab 2</a>
-        <a href="#tab3" data-gjs-type="tab">Tab 3</a>
+        <span aria-controls="tab1" data-gjs-type="tab">Tab 1</span>
+        <span aria-controls="tab2" data-gjs-type="tab">Tab 2</span>
+        <span aria-controls="tab3" data-gjs-type="tab">Tab 3</span>
       </nav>
       <div id="tab1" data-gjs-type="tab-content">
         <div>Tab 1 Content</div>

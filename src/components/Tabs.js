@@ -1,10 +1,10 @@
 export default (dc, config) => {
   const type = config.typeTabs;
 
-  const script = function() {
+  const script = function(props) {
     const el = this;
-    const classTabActive = '{[ class-tab-active ]}';
-    const selectorTab = '{[ selector-tab ]}';
+    const classTabActive = props.classactive;
+    const selectorTab = props.selectortab;
     const { history } = window;
     const attrTabindex =  'tabIndex';
     const attrSelected =  'ariaSelected';
@@ -19,7 +19,7 @@ export default (dc, config) => {
     }
 
     const hideContents = () => {
-      each(el.querySelectorAll(roleTabContent), i => i.style.display = 'none');
+      each(el.querySelectorAll(roleTabContent), i => i.hidden = true);
     }
 
     const activeTab = (tabEl) => {
@@ -32,9 +32,9 @@ export default (dc, config) => {
       tabEl.className += ' ' + classTabActive;
       tabEl[attrTabindex] = '0';
       tabEl[attrSelected] = 'true';
-      const tabContSelector = tabEl.getAttribute(selectorTab);
-      const tabContent = el.querySelector(tabContSelector);
-      tabContent && (tabContent.style.display = '');
+      const tabContentId = tabEl.getAttribute(selectorTab);
+      const tabContent = tabContentId && el.querySelector(`#${tabContentId}`);
+      tabContent && (tabContent.hidden = false);
     };
 
     let tabToActive = el.querySelector(`.${classTabActive}${roleTab}`);
@@ -46,9 +46,9 @@ export default (dc, config) => {
       if (matches.call(target, roleTab)) {
         ev.preventDefault();
         activeTab(target);
-        const hash = target.getAttribute('href');
+        const id = target.getAttribute(selectorTab);
         try {
-          history && history.pushState(null, null, hash);
+          history && history.pushState(null, null, `#${id}`);
         } catch (e) {}
       }
     });
@@ -58,21 +58,22 @@ export default (dc, config) => {
     model: {
       defaults: {
         name: 'Tabs',
-        'class-tab-active': config.classTabActive,
-        'selector-tab': config.selectorTab,
+        classactive: config.classTabActive,
+        selectortab: config.selectorTab,
         components: config.template,
         script,
+        'script-props': ['classactive', 'selectortab'],
         ...config.tabsProps
       },
     },
 
-    view: {
-      onRender() {
-        const tabContainer = this.model.findType(config.typeTabContainer)[0];
-        tabContainer && tabContainer.components().each(tab => {
-          tabContainer.onAdd(tab);
-        });
-      }
-    }
+    // view: {
+    //   onRender() {
+    //     const tabContainer = this.model.findType(config.typeTabContainer)[0];
+    //     tabContainer && tabContainer.components().each(tab => {
+    //       tabContainer.onAdd(tab);
+    //     });
+    //   }
+    // }
   });
 }

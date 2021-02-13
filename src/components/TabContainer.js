@@ -21,8 +21,8 @@ export default (dc, config) => {
       init() {
         classKey && this.addClass(classKey);
         const tabs = this.components();
-        this.listenTo(tabs, 'add', this.onAdd);
-        this.listenTo(tabs, 'remove', this.onRemove);
+        // this.listenTo(tabs, 'add', this.onAdd);
+        // this.listenTo(tabs, 'remove', this.onRemove);
       },
 
       onRemove(model, value, opts = {}) {
@@ -51,7 +51,7 @@ export default (dc, config) => {
             model.tabContent = tabContEl.data('model');
           } else {
             const tabContent = modelTabs.components().add({
-              type: 'tab-content',
+              type: config.typeTabContent,
               components: config.templateTabContent,
             });
             const id = tabContent.getId();
