@@ -81,14 +81,5 @@ export default (dc, { typeTab, typeTabContent, ...config}) => {
         ...config.tabsProps
       },
     },
-
-    // view: {
-    //   onRender() {
-    //     const tabContainer = this.model.findType(config.typeTabContainer)[0];
-    //     tabContainer && tabContainer.components().each(tab => {
-    //       tabContainer.onAdd(tab);
-    //     });
-    //   }
-    // }
   });
 }

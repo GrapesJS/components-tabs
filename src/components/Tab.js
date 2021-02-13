@@ -9,10 +9,7 @@ export default (dc, { defaultModel, ...config }) => {
       defaults: {
         name: 'Tab',
         draggable: `[data-gjs-type="${config.typeTabContainer}"]`,
-        attributes: {
-          role,
-          // aria-controls refer to the id of the tab panel
-        },
+        attributes: { role },
         ...config.tabProps
       },
 
