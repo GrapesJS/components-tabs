@@ -1,9 +1,8 @@
 export default (dc, config) => {
-  const type = 'tab-content';
   const attrKey = config.attrTabContent;
   const classKey = config.classTabContent;
 
-  dc.addType(type, {
+  dc.addType(config.typeTabContent, {
     isComponent: el => el.hasAttribute && el.hasAttribute(attrKey),
 
     model: {

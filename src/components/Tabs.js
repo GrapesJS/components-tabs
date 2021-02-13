@@ -1,5 +1,5 @@
 export default (dc, config) => {
-  const type = 'tabs';
+  const type = config.typeTabs;
   const attrTabs = config.attrTabs;
 
   const script = function() {
