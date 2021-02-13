@@ -53,6 +53,7 @@ export default (dc, { typeTab, typeTabContent, ...config}) => {
       }
     });
   };
+  const defTabs = ['1', '2', '3'];
 
   dc.addType(type, {
     model: {
@@ -63,22 +64,24 @@ export default (dc, { typeTab, typeTabContent, ...config}) => {
         'script-props': ['classactive', 'selectortab'],
         script,
         components: `
-          <nav data-gjs-type="tab-container">
-            <span aria-controls="tab1" data-gjs-type="tab">Tab 1</span>
-            <span aria-controls="tab2" data-gjs-type="tab">Tab 2</span>
-            <span aria-controls="tab3" data-gjs-type="tab">Tab 3</span>
+          <nav data-gjs-type="${config.typeTabContainer}">
+            ${defTabs.map(i =>
+              `<span aria-controls="tab${i}" data-gjs-type="${typeTab}">Tab ${i}</span>`
+            ).join('')}
           </nav>
-          <div id="tab1" data-gjs-type="tab-content">
-            <div>Tab 1 Content</div>
-          </div>
-          <div id="tab2" data-gjs-type="tab-content">
-            <div>Tab 2 Content</div>
-          </div>
-          <div id="tab3" data-gjs-type="tab-content">
-            <div>Tab 3 Content</div>
+          <div data-gjs-type="${config.typeTabContents}">
+            ${defTabs.map(i => `
+              <div id="tab${i}" data-gjs-type="${typeTabContent}">
+                <div>Tab ${i} Content</div>
+              </div>
+            `).join('')}
           </div>
         `,
         ...config.tabsProps
+      },
+
+      findContents() {
+        return this.findType(typeTabContent);
       },
     },
   });

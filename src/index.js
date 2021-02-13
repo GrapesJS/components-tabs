@@ -19,6 +19,9 @@ export default (editor, opts = {}) => {
     // Object to extend the default tab container properties
     tabContainerProps: {},
 
+    // Object to extend the default tab panels properties
+    propsPanels: {},
+
     // Default class to use on tab
     classTab: 'tab',
 
@@ -45,6 +48,9 @@ export default (editor, opts = {}) => {
 
     // TabContent component id
     typeTabContent: 'tab-content',
+
+    // Panels component id
+    typeTabContents: 'tab-contents',
 
     // Default template for new added tab contents
     templateTabContent: `<div>New Tab Content</div>`,

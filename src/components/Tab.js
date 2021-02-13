@@ -17,6 +17,10 @@ export default (dc, { defaultModel, ...config }) => {
         classKey && this.addClass(classKey);
       },
 
+      getControlId() {
+        return this.getAttribute(selectorTab);
+      },
+
       clone() {
         const cloned = defaultModel.prototype.clone.apply(this, arguments);
         cloned.addAttributes({ [selectorTab]: '' });

@@ -1,12 +1,12 @@
 export const role = 'tablist';
 
 export default (dc, config) => {
-  const type = config.typeTabContainer;
   const classKey = config.classTabContainer;
   const selectorTab = config.selectorTab;
   const typeTabs = config.typeTabs;
+  const typeTabContent = config.typeTabContent;
 
-  dc.addType(type, {
+  dc.addType(config.typeTabContainer, {
     model: {
       defaults: {
         name: 'Tab Container',
@@ -25,15 +25,14 @@ export default (dc, config) => {
         // this.listenTo(tabs, 'remove', this.onRemove);
       },
 
-      onRemove(model, value, opts = {}) {
-        const tabContent = model.tabContent;
-
+      onRemove(model) {
         // I'll remove the tabContent only if I'm sure that tab is
         // removed from the collection
-        tabContent && setTimeout(() => {
-          const coll = model.collection;
-          const tabColl = tabContent.collection;
-          !coll && tabColl && tabColl.remove(tabContent);
+        model.tabContent && setTimeout(() => {
+          const id = model.getControlId();
+          this.closestType(typeTabs).findContents()
+            .filter(c => c.getId() === id)
+            .map(c => c.remove());
         }, 0);
       },
 
@@ -43,20 +42,22 @@ export default (dc, config) => {
         if (!model.tabContent && !opts.avoidStore) {
           const selCont = attrs[selectorTab];
           const modelTabs = this.closestType(typeTabs);
-          const tabContEl = selCont && modelTabs.view.$el.find(selCont);
+          const tabContents = selCont ? modelTabs.findType(typeTabContent) : [];
+          // const tabContEl = selCont && modelTabs.view.$el.find(selCont);
+          const tabContEl = tabContents.filter(cont => cont.getId() == selCont)[0];
 
           // If the tab content was found I'll attach it to the tab model
           // otherwise I'll create e new one
-          if (tabContEl && tabContEl.length) {
-            model.tabContent = tabContEl.data('model');
+          if (tabContEl) {
+            model.tabContent = tabContEl;
           } else {
-            const tabContent = modelTabs.components().add({
-              type: config.typeTabContent,
+            const tabContent = modelTabs.components().add({ // TODO select CONTENTS
+              type: typeTabContent,
               components: config.templateTabContent,
             });
             const id = tabContent.getId();
             tabContent.addAttributes({ id });
-            model.addAttributes({ [selectorTab]: `#${id}` });
+            model.addAttributes({ [selectorTab]: id });
             model.tabContent = tabContent;
             tabContent.getEl().style.display = 'none';
           }
