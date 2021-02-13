@@ -2,14 +2,11 @@ export const role = 'tab';
 
 export default (dc, { linkModel, ...config }) => {
   const type = config.typeTab;
-  const attrKey = config.attrTab;
   const classKey = config.classTab;
   const selectorTab = config.selectorTab;
 
   dc.addType(type, {
     extend: 'link',
-
-    isComponent: el => el.hasAttribute && el.hasAttribute(attrKey),
 
     model: {
       defaults: {
@@ -23,9 +20,6 @@ export default (dc, { linkModel, ...config }) => {
       },
 
       init() {
-        const attrs = this.getAttributes();
-        attrs[attrKey] = 1;
-        this.setAttributes(attrs);
         classKey && this.addClass(classKey);
       },
 

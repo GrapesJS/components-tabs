@@ -1,8 +1,6 @@
 import loadComponents from './components/index';
 import loadBlocks from './blocks';
 
-const attrTab = 'data-tab';
-
 export default (editor, opts = {}) => {
   const options = { ...{
     // Object to extend the default tabs block, eg. `{ label: 'Tabs', attributes: { ... } }`
@@ -20,9 +18,6 @@ export default (editor, opts = {}) => {
 
     // Object to extend the default tab container properties
     tabContainerProps: {},
-
-    // Tab attribute identifier
-    attrTab,
 
     // Default class to use on tab
     classTab: 'tab',
@@ -54,9 +49,9 @@ export default (editor, opts = {}) => {
     // Default tabs template
     template: `
       <nav data-gjs-type="tab-container">
-        <a href="#tab1" ${attrTab}>Tab 1</a>
-        <a href="#tab2" ${attrTab}>Tab 2</a>
-        <a href="#tab3" ${attrTab}>Tab 3</a>
+        <a href="#tab1" data-gjs-type="tab">Tab 1</a>
+        <a href="#tab2" data-gjs-type="tab">Tab 2</a>
+        <a href="#tab3" data-gjs-type="tab">Tab 3</a>
       </nav>
       <div id="tab1" data-gjs-type="tab-content">
         <div>Tab 1 Content</div>
