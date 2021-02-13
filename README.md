@@ -36,7 +36,6 @@ Simple tabs component plugin for GrapesJS
 | `tabProps` | Object to extend the default tab properties | `{}` |
 | `tabContentProps` | Object to extend the default tab content properties | `{}` |
 | `tabContainerProps` | Object to extend the default tab container properties | `{}` |
-| `attrTabs` | Tabs attribute identifier (main component) | `data-tabs` |
 | `attrTab` | Tab attribute identifier | `data-tab` |
 | `attrTabContent` | Tab content attribute identifier | `data-tab-content` |
 | `attrTabContainer` | Tab container attribute identifier | `data-tab-container` |

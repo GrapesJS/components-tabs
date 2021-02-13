@@ -2,10 +2,10 @@ export const role = 'tablist';
 
 export default (dc, config) => {
   const type = config.typeTabContainer;
-  const attrTabs = config.attrTabs;
   const attrKey = config.attrTabContainer;
   const classKey = config.classTabContainer;
   const selectorTab = config.selectorTab;
+  const typeTabs = config.typeTabs;
 
   dc.addType(type, {
     isComponent: el => el.hasAttribute && el.hasAttribute(attrKey),
@@ -13,7 +13,7 @@ export default (dc, config) => {
     model: {
       defaults: {
         name: 'Tab Container',
-        draggable: `[data-gjs-type="${config.typeTabs}"]`,
+        draggable: `[data-gjs-type="${typeTabs}"]`,
         droppable: `[data-gjs-type="${config.typeTab}"]`,
         copyable: false,
         removable: false,
@@ -48,7 +48,7 @@ export default (dc, config) => {
 
         if (!model.tabContent && !opts.avoidStore) {
           const selCont = attrs[selectorTab];
-          const modelTabs = this.closest(`[${attrTabs}]`);
+          const modelTabs = this.closestType(typeTabs);
           const tabContEl = selCont && modelTabs.view.$el.find(selCont);
 
           // If the tab content was found I'll attach it to the tab model

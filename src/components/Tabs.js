@@ -1,16 +1,15 @@
 export default (dc, config) => {
   const type = config.typeTabs;
-  const attrTabs = config.attrTabs;
 
   const script = function() {
     const el = this;
-    const attrTab = '[' + '{[ attr-tab ]}' + ']';
-    const attrTabContent = '[' + '{[ attr-tab-content ]}' + ']';
     const classTabActive = '{[ class-tab-active ]}';
     const selectorTab = '{[ selector-tab ]}';
     const { history } = window;
     const attrTabindex =  'tabIndex';
     const attrSelected =  'ariaSelected';
+    const roleTab = '[role=tab]';
+    const roleTabContent = '[role=tabpanel]';
     const { body, location } = document;
     const matches = body.matchesSelector || body.webkitMatchesSelector
       || body.mozMatchesSelector || body.msMatchesSelector;
@@ -20,11 +19,11 @@ export default (dc, config) => {
     }
 
     const hideContents = () => {
-      each(el.querySelectorAll(attrTabContent), i => i.style.display = 'none');
+      each(el.querySelectorAll(roleTabContent), i => i.style.display = 'none');
     }
 
     const activeTab = (tabEl) => {
-      each(el.querySelectorAll(attrTab), (item) => {
+      each(el.querySelectorAll(roleTab), (item) => {
         item.className = item.className.replace(classTabActive, '').trim();
         item[attrTabindex] = '-1';
         item[attrSelected] = 'false';
@@ -38,13 +37,13 @@ export default (dc, config) => {
       tabContent && (tabContent.style.display = '');
     };
 
-    let tabToActive = el.querySelector('.' + classTabActive + attrTab);
-    tabToActive = tabToActive || el.querySelector(attrTab);
+    let tabToActive = el.querySelector(`.${classTabActive}${roleTab}`);
+    tabToActive = tabToActive || el.querySelector(roleTab);
     tabToActive && activeTab(tabToActive);
 
     el.addEventListener('click', (ev) => {
       const { target } = ev;
-      if (matches.call(target, attrTab)) {
+      if (matches.call(target, roleTab)) {
         ev.preventDefault();
         activeTab(target);
         const hash = target.getAttribute('href');
@@ -56,8 +55,6 @@ export default (dc, config) => {
   };
 
   dc.addType(type, {
-    isComponent: el => el.hasAttribute && el.hasAttribute(attrTabs),
-
     model: {
       defaults: {
         name: 'Tabs',
@@ -69,12 +66,6 @@ export default (dc, config) => {
         script,
         ...config.tabsProps
       },
-
-      init() {
-        const attrs = this.getAttributes();
-        attrs[config.attrTabs] = 1;
-        this.setAttributes(attrs);
-      }
     },
 
     view: {

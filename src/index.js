@@ -2,7 +2,6 @@ import loadComponents from './components/index';
 import loadBlocks from './blocks';
 
 const attrTab = 'data-tab';
-const attrTabs = 'data-tabs';
 const attrTabContent = 'data-tab-content';
 const attrTabContainer = 'data-tab-container';
 
@@ -23,9 +22,6 @@ export default (editor, opts = {}) => {
 
     // Object to extend the default tab container properties
     tabContainerProps: {},
-
-    // Tabs attribute identifier (main component)
-    attrTabs,
 
     // Tab attribute identifier
     attrTab,
