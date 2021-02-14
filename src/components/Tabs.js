@@ -67,12 +67,9 @@ export default (dc, {
         script,
         components: `
           <nav data-gjs-type="${typeTabContainer}">
-            ${defTabs.map(i =>
-              `<span aria-controls="tab${i}" data-gjs-type="${typeTab}">Tab ${i}</span>`
-            ).join('')}
+            ${defTabs.map(i =>`<span data-gjs-type="${typeTab}">Tab ${i}</span>`).join('')}
           </nav>
-          <div data-gjs-type="${typeTabContents}">
-          </div>
+          <div data-gjs-type="${typeTabContents}"></div>
         `,
         ...config.tabsProps
       },
