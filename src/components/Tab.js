@@ -21,7 +21,6 @@ export default (dc, {
       __initTab() {
         if (this.tabContent) return;
         let content = this.getTabContent();
-        console.log('init tab', this, { content }, this.tabContent);
 
         // If the tab content was found I'll attach it to the tab model
         // otherwise I'll create e new one
@@ -46,7 +45,6 @@ export default (dc, {
         const content = this.getTabContent();
         content && content.remove();
         this.getTabsType().trigger('rerender')
-        console.log('tab removed', this, { content });
       },
 
       getTabsType() {
