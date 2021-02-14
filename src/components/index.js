@@ -9,6 +9,7 @@ export default (editor, config = {}) => {
   const opts = {
     ...config,
     defaultModel: dc.getType('default').model,
+    editor,
   };
 
   [

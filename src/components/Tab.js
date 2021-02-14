@@ -1,7 +1,7 @@
 export const role = 'tab';
 
 export default (dc, {
-  defaultModel, typeTabs, selectorTab, ...config
+  defaultModel, typeTabs, selectorTab, editor, ...config
 }) => {
   const classKey = config.classTab;
   let tm;
@@ -28,7 +28,7 @@ export default (dc, {
         // If the tab content was found I'll attach it to the tab model
         // otherwise I'll create e new one
         if (!content) {
-          const tabs = this.closestType(typeTabs);
+          const tabs = this.getTabsType();
           const cnts = tabs.getContentsType();
           content = cnts.append({
             type: config.typeTabContent,
@@ -39,8 +39,7 @@ export default (dc, {
           content.addAttributes({ id, 'aria-labelledby': tabId });
           this.addAttributes({ [selectorTab]: id, id: tabId });
           this.tabContent = content;
-          tm && clearTimeout(tm);
-          tm = setTimeout(() => tabs.trigger('rerender'));
+          this.__updateTabs();
         }
 
         this.tabContent = content;
@@ -49,12 +48,27 @@ export default (dc, {
       __onRemove() {
         const content = this.getTabContent();
         content && content.remove();
+        this.__updateTabs(1);
         console.log('tab removed', this, { content });
+      },
+
+      __updateTabs(now) {
+        const emit = () => this.getTabsType().trigger('rerender');
+        if (now) {
+          emit();
+        } else {
+          tm && clearTimeout(tm);
+          tm = setTimeout(emit);
+        }
+      },
+
+      getTabsType() {
+        return this.closestType(typeTabs);
       },
 
       getTabContent() {
         const id = this.getControlId();
-        const tabs = this.closestType(typeTabs);
+        const tabs = this.getTabsType();
         if (!tabs || !id) return;
         const contents = tabs.findContents();
         return contents.filter(c => c.getId() == id)[0];
