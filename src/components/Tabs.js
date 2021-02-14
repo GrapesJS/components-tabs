@@ -62,6 +62,18 @@ export default (dc, {
     });
   };
   const defTabs = [1, 2, 3].map(i => ({ type: typeTab }));
+  const traits = [
+    {
+      full: 1,
+      type: 'button',
+      label: false,
+      text: 'Add Tab',
+      command: ed => {
+          const sel = ed.getSelected();
+          sel && sel.addTab();
+      },
+    }
+  ];
 
   dc.addType(type, {
     model: {
@@ -71,6 +83,7 @@ export default (dc, {
         selectortab: config.selectorTab,
         'script-props': ['classactive', 'selectortab'],
         script,
+        traits,
         components: [
           { type: typeTabContainer, components: defTabs },
           { type: typeTabContents },
@@ -102,6 +115,14 @@ export default (dc, {
 
       findContents() {
         return this.findType(typeTabContent);
+      },
+
+      addTab(content) {
+        const cnt = this.getTabContainerType();
+        cnt.append({
+            type: typeTab,
+            components: content,
+        });
       },
     },
   });
