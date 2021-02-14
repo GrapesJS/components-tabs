@@ -1,8 +1,10 @@
 export const role = 'tab';
 
-export default (dc, { defaultModel, typeTabs, ...config }) => {
+export default (dc, {
+  defaultModel, typeTabs, selectorTab, ...config
+}) => {
   const classKey = config.classTab;
-  const selectorTab = config.selectorTab;
+  let tm;
 
   dc.addType(config.typeTab, {
     model: {
@@ -37,6 +39,8 @@ export default (dc, { defaultModel, typeTabs, ...config }) => {
           content.addAttributes({ id, 'aria-labelledby': tabId });
           this.addAttributes({ [selectorTab]: id, id: tabId });
           this.tabContent = content;
+          tm && clearTimeout(tm);
+          tm = setTimeout(() => tabs.trigger('rerender'));
         }
 
         this.tabContent = content;

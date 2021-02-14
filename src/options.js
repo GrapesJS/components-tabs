@@ -46,7 +46,7 @@ export default {
     typeTabContents: 'tab-contents',
 
     // Default template for new added tab contents
-    templateTabContent: (tab) => `<div>Tab ${tab.index() + 1} Content</div>`,
+    templateTabContent: tab => '<div>Tab Content</div>',
 
     style: `
         .tab {
