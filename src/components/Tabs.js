@@ -1,5 +1,5 @@
 export default (dc, {
-  typeTab, typeTabContent, typeTabContents, typeTabContainer, ...config
+  typeTab, typeTabContent, typeTabContents, typeTabContainer, style, ...config
 }) => {
   const type = config.typeTabs;
 
@@ -71,12 +71,15 @@ export default (dc, {
         selectortab: config.selectorTab,
         'script-props': ['classactive', 'selectortab'],
         script,
-        components: `
-          <nav data-gjs-type="${typeTabContainer}">
-            ${defTabs.map(i =>`<span data-gjs-type="${typeTab}">Tab ${i}</span>`).join('')}
-          </nav>
-          <div data-gjs-type="${typeTabContents}"></div>
-        `,
+        components: [
+          {
+            type: typeTabContainer,
+            components: defTabs.map(i => ({ type: typeTab, components: `Tab ${i}` }))
+          }, {
+            type: typeTabContents
+          },
+          style && `<style>${style(config)}</style>`
+        ],
         ...config.tabsProps
       },
 

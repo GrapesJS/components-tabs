@@ -8,7 +8,7 @@ export default (editor, { tabsBlock, style, typeTabs }) => {
       </svg>
     `,
     label: 'Tabs',
-    content: `<div data-gjs-type="${typeTabs}"></div>${ style ? `<style>${style}</style>` : ''}`,
+    content: { type: typeTabs },
     ...tabsBlock
   });
 }

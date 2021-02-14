@@ -11,6 +11,10 @@ export default (dc, {
         name: 'Tab',
         draggable: `[data-gjs-type="${config.typeTabContainer}"]`,
         attributes: { role },
+        components: (tab) => {
+          console.log('from model', tab)
+          return 'Tab';
+        },
         ...config.tabProps
       },
 

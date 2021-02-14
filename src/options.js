@@ -48,31 +48,31 @@ export default {
     // Default template for new added tab contents
     templateTabContent: tab => '<div>Tab Content</div>',
 
-    style: `
-        .tab {
-        text-decoration: none;
-        color: inherit;
-        padding: 7px 14px;
-        transition: opacity 0.3s;
-        display: inline-block;
-        border-radius: 3px;
-        margin-right: 10px;
+    style: (config) => `
+        .${config.classTab} {
+            text-decoration: none;
+            color: inherit;
+            padding: 7px 14px;
+            transition: opacity 0.3s;
+            display: inline-block;
+            border-radius: 3px;
+            margin-right: 10px;
         }
 
-        .tab.tab-active {
-        background-color: #0d94e6;
-        color: white;
+        .${config.classTab}.${config.classTabActive} {
+            background-color: #0d94e6;
+            color: white;
         }
 
-        .tab-content {
-        padding: 6px 12px;
-        min-height: 100px;
-        animation: fadeEffect 1s;
+        .${config.classTabContent} {
+            padding: 6px 12px;
+            min-height: 100px;
+            animation: fadeEffect 1s;
         }
 
         @keyframes fadeEffect {
-        from {opacity: 0;}
-        to {opacity: 1;}
+            from {opacity: 0;}
+            to {opacity: 1;}
         }
     `
 };
