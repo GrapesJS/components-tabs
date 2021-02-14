@@ -79,14 +79,19 @@ export default (dc, {
 
       init() {
         this.findTabs().map(this.__onTab);
-        const tabs = this.findType(typeTabContainer)[0];
-        const tabsComps = tabs.components();
-        this.listenTo(tabsComps, 'add', this.__onTab);
-        // this.listenTo(tabsComps, 'remove', this.__onTabRemove);
+        this.listenTo(this.getTabContainerType().components(), 'add', this.__onTab);
       },
 
       __onTab(tab, v, opts = {}) {
-        !opts.avoidStore && tab.__initTab();
+        !opts.avoidStore && !opts.temporary &&  tab.__initTab && tab.__initTab();
+      },
+
+      getTabContainerType() {
+        return this.findType(typeTabContainer)[0];
+      },
+
+      getContentsType() {
+        return this.findType(typeTabContents)[0];
       },
 
       findTabs() {
@@ -95,10 +100,6 @@ export default (dc, {
 
       findContents() {
         return this.findType(typeTabContent);
-      },
-
-      getContentsType() {
-        return this.findType(typeTabContents)[0];
       },
     },
   });
