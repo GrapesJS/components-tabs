@@ -8,7 +8,7 @@ export default (dc, config) => {
         droppable: false,
         copyable: false,
         removable: false,
-        ...config.propsPanels
+        ...config.tabContentsProps
       }
     },
   });

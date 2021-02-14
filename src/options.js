@@ -6,17 +6,17 @@ export default {
     // Object to extend the default tabs properties, eg. `{ name: 'My Tabs', droppable: false, ... }`
     tabsProps: {},
 
+    // Object to extend the default tab container properties
+    tabContainerProps: {},
+
     // Object to extend the default tab properties
     tabProps: {},
 
     // Object to extend the default tab content properties
     tabContentProps: {},
 
-    // Object to extend the default tab container properties
-    tabContainerProps: {},
-
-    // Object to extend the default tab panels properties
-    propsPanels: {},
+    // Object to extend the default tab contents properties
+    tabContentsProps: {},
 
     // Default class to use on tab
     classTab: 'tab',
@@ -48,6 +48,7 @@ export default {
     // Default template for new added tab contents
     templateTabContent: tab => '<div>Tab Content</div>',
 
+    // Default style for tabs
     style: (config) => `
         .${config.classTab} {
             text-decoration: none;
