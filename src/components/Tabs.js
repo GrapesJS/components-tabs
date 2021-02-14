@@ -39,8 +39,13 @@ export default (dc, {
       tabContent && (tabContent.hidden = false);
     };
 
+    const getTabByHash = () => {
+      const hashId = (location.hash || '').replace('#', '');
+      return el.querySelector(`${roleTab}[${selectorTab}=${hashId}]`);
+    };
+
     let tabToActive = el.querySelector(`.${classTabActive}${roleTab}`);
-    tabToActive = tabToActive || el.querySelector(roleTab);
+    tabToActive = tabToActive || getTabByHash() || el.querySelector(roleTab);
     tabToActive && activeTab(tabToActive);
 
     el.addEventListener('click', (ev) => {
