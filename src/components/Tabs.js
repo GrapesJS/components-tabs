@@ -83,7 +83,7 @@ export default (dc, {
       },
 
       __onTab(tab, v, opts = {}) {
-        !opts.avoidStore && !opts.temporary &&  tab.__initTab && tab.__initTab();
+        !opts.avoidStore && !opts.temporary && tab.__initTab && tab.__initTab();
       },
 
       getTabContainerType() {
