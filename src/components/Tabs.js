@@ -1,4 +1,6 @@
-export default (dc, { typeTab, typeTabContent, typeTabContents, ...config}) => {
+export default (dc, {
+  typeTab, typeTabContent, typeTabContents, typeTabContainer, ...config
+}) => {
   const type = config.typeTabs;
 
   const script = function(props) {
@@ -64,7 +66,7 @@ export default (dc, { typeTab, typeTabContent, typeTabContents, ...config}) => {
         'script-props': ['classactive', 'selectortab'],
         script,
         components: `
-          <nav data-gjs-type="${config.typeTabContainer}">
+          <nav data-gjs-type="${typeTabContainer}">
             ${defTabs.map(i =>
               `<span aria-controls="tab${i}" data-gjs-type="${typeTab}">Tab ${i}</span>`
             ).join('')}
@@ -74,15 +76,16 @@ export default (dc, { typeTab, typeTabContent, typeTabContents, ...config}) => {
         `,
         ...config.tabsProps
       },
-      /**
-       ${defTabs.map(i => `
-              <div id="tab${i}" data-gjs-type="${typeTabContent}">
-                <div>Tab ${i} Content</div>
-              </div>
-            `).join('')}
-       */
+
       init() {
-        this.findTabs().map(t => t.__initTab());
+        this.findTabs().map(this.__onTab);
+        const tabs = this.findType(typeTabContainer)[0];
+        const tabsComps = tabs.components();
+        this.listenTo(tabsComps, 'add', this.__onTab);
+      },
+
+      __onTab(tab, v, opts = {}) {
+        !opts.avoidStore && tab.__initTab();
       },
 
       findTabs() {
