@@ -61,7 +61,7 @@ export default (dc, {
       }
     });
   };
-  const defTabs = ['1', '2', '3'];
+  const defTabs = ['1', '2', '3'].map(i => ({ type: typeTab, components: `Tab ${i}` }));
 
   dc.addType(type, {
     model: {
@@ -72,12 +72,8 @@ export default (dc, {
         'script-props': ['classactive', 'selectortab'],
         script,
         components: [
-          {
-            type: typeTabContainer,
-            components: defTabs.map(i => ({ type: typeTab, components: `Tab ${i}` }))
-          }, {
-            type: typeTabContents
-          },
+          { type: typeTabContainer, components: defTabs },
+          { type: typeTabContents },
           style && `<style>${style(config)}</style>`
         ],
         ...config.tabsProps

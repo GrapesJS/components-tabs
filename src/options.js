@@ -27,6 +27,9 @@ export default {
     // Default class to use on tab content
     classTabContent: 'tab-content',
 
+    // Default class to use on tab contents
+    classTabContents: 'tab-contents',
+
     // The attribute used inside tabs as a selector for tab contents
     selectorTab: 'aria-controls',
 
@@ -51,10 +54,7 @@ export default {
     // Default style for tabs
     style: (config) => `
         .${config.classTab} {
-            text-decoration: none;
-            color: inherit;
             padding: 7px 14px;
-            transition: opacity 0.3s;
             display: inline-block;
             border-radius: 3px;
             margin-right: 10px;
@@ -66,9 +66,12 @@ export default {
         }
 
         .${config.classTabContent} {
-            padding: 6px 12px;
-            min-height: 100px;
             animation: fadeEffect 1s;
+        }
+
+        .${config.classTabContents} {
+            min-height: 100px;
+            padding: 10px;
         }
 
         @keyframes fadeEffect {

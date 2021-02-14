@@ -4,6 +4,7 @@ export default (dc, config) => {
     model: {
       defaults: {
         name: 'Tab Contents',
+        classes: config.classTabContents,
         draggable: false,
         droppable: false,
         copyable: false,
