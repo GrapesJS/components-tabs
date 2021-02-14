@@ -21,6 +21,9 @@ export default {
     // Default class to use on tab
     classTab: 'tab',
 
+    // Default class to use on tab
+    classTabContainer: 'tab-container',
+
     // Class used on tabs when active
     classTabActive: 'tab-active',
 
@@ -66,6 +69,10 @@ export default {
         .${config.classTab}.${config.classTabActive} {
             background-color: #0d94e6;
             color: white;
+        }
+
+        .${config.classTabContainer} {
+            display: inline-block;
         }
 
         .${config.classTabContent} {

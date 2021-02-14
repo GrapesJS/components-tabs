@@ -12,6 +12,7 @@ export default (dc, config) => {
         removable: false,
         highlightable: false,
         attributes: { role },
+        classes: config.classTabContainer,
         ...config.tabContainerProps
       },
     },
