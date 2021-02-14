@@ -3,8 +3,6 @@ export const role = 'tab';
 export default (dc, {
   defaultModel, typeTabs, selectorTab, editor, ...config
 }) => {
-  const classKey = config.classTab;
-
   dc.addType(config.typeTab, {
     model: {
       defaults: {
@@ -12,11 +10,11 @@ export default (dc, {
         draggable: `[data-gjs-type="${config.typeTabContainer}"]`,
         attributes: { role },
         components: config.templateTab,
+        classes: config.classTab,
         ...config.tabProps
       },
 
       init() {
-        classKey && this.addClass(classKey);
         this.on('removed', this.__onRemove);
       },
 
