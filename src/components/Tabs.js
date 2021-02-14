@@ -41,7 +41,7 @@ export default (dc, {
 
     const getTabByHash = () => {
       const hashId = (location.hash || '').replace('#', '');
-      return el.querySelector(`${roleTab}[${selectorTab}=${hashId}]`);
+      return hashId && el.querySelector(`${roleTab}[${selectorTab}=${hashId}]`);
     };
 
     let tabToActive = el.querySelector(`.${classTabActive}${roleTab}`);
