@@ -4,7 +4,6 @@ export default (dc, {
   defaultModel, typeTabs, selectorTab, editor, ...config
 }) => {
   const classKey = config.classTab;
-  let tm;
 
   dc.addType(config.typeTab, {
     model: {
@@ -36,10 +35,9 @@ export default (dc, {
           })[0];
           const id = content.getId();
           const tabId = this.getId();
-          content.addAttributes({ id, 'aria-labelledby': tabId });
+          content.addAttributes({ id, 'aria-labelledby': tabId, hidden: true });
           this.addAttributes({ [selectorTab]: id, id: tabId });
           this.tabContent = content;
-          this.__updateTabs();
         }
 
         this.tabContent = content;
@@ -48,18 +46,8 @@ export default (dc, {
       __onRemove() {
         const content = this.getTabContent();
         content && content.remove();
-        this.__updateTabs(1);
+        this.getTabsType().trigger('rerender')
         console.log('tab removed', this, { content });
-      },
-
-      __updateTabs(now) {
-        const emit = () => this.getTabsType().trigger('rerender');
-        if (now) {
-          emit();
-        } else {
-          tm && clearTimeout(tm);
-          tm = setTimeout(emit);
-        }
       },
 
       getTabsType() {
