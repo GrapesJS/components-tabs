@@ -49,7 +49,7 @@ export default {
     typeTabContents: 'tab-contents',
 
     // Default template for the new added tab
-    templateTab: tab => '<span data-gjs-highlightable="false">Tab x</span>',
+    templateTab: tab => '<span data-gjs-highlightable="false">Tab</span>',
 
     // Default template for the new added tab content
     templateTabContent: tab => '<div>Tab Content</div>',
