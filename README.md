@@ -39,7 +39,6 @@ Simple tabs component plugin for GrapesJS
 | `classTab` | Default class to use on tab | `tab` |
 | `classTabActive` | Class used on tabs when active | `tab-active` |
 | `classTabContent` | Default class to use on tab content | `tab-content` |
-| `classTabContainer` | Default class to use on tab container | `tab-container` |
 | `selectorTab` | The attribute used inside tabs as a selector for tab contents | `href` |
 | `templateTabContent` | Default template for new added tab contents | `<div>New Tab Content</div>` |
 | `style` | Default style for tabs | `.tab { ....` (check the source) |

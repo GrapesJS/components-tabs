@@ -31,9 +31,6 @@ export default (editor, opts = {}) => {
     // Default class to use on tab content
     classTabContent: 'tab-content',
 
-    // Default class to use on tab container
-    classTabContainer: 'tab-container',
-
     // The attribute used inside tabs as a selector for tab contents
     selectorTab: 'aria-controls',
 

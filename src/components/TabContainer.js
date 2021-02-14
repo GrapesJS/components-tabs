@@ -1,7 +1,6 @@
 export const role = 'tablist';
 
 export default (dc, config) => {
-  const classKey = config.classTabContainer;
   const selectorTab = config.selectorTab;
   const typeTabs = config.typeTabs;
   const typeTabContent = config.typeTabContent;
@@ -20,7 +19,6 @@ export default (dc, config) => {
       },
 
       init() {
-        classKey && this.addClass(classKey);
         const tabs = this.components();
         // this.listenTo(tabs, 'add', this.onAdd);
         // this.listenTo(tabs, 'remove', this.onRemove);
