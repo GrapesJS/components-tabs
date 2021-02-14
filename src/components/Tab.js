@@ -15,29 +15,37 @@ export default (dc, { defaultModel, typeTabs, ...config }) => {
 
       init() {
         classKey && this.addClass(classKey);
+        this.on('removed', this.__onRemove);
       },
 
       __initTab() {
-        console.log('init tab', this);
-        const content = this.getTabContent();
+        if (this.tabContent) return;
+        let content = this.getTabContent();
+        console.log('init tab', this, { content }, this.tabContent);
 
         // If the tab content was found I'll attach it to the tab model
         // otherwise I'll create e new one
-        if (content) {
-          this.tabContent = content;
-        } else {
+        if (!content) {
           const tabs = this.closestType(typeTabs);
           const cnts = tabs.getContentsType();
-          const tabContent = cnts.append({
+          content = cnts.append({
             type: config.typeTabContent,
             components: config.templateTabContent(this),
           })[0];
-          const id = tabContent.getId();
+          const id = content.getId();
           const tabId = this.getId();
-          tabContent.addAttributes({ id, 'aria-labelledby': tabId });
+          content.addAttributes({ id, 'aria-labelledby': tabId });
           this.addAttributes({ [selectorTab]: id, id: tabId });
-          this.tabContent = tabContent;
+          this.tabContent = content;
         }
+
+        this.tabContent = content;
+      },
+
+      __onRemove() {
+        const content = this.getTabContent();
+        content && content.remove();
+        console.log('tab removed', this, { content });
       },
 
       getTabContent() {

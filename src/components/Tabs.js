@@ -82,6 +82,7 @@ export default (dc, {
         const tabs = this.findType(typeTabContainer)[0];
         const tabsComps = tabs.components();
         this.listenTo(tabsComps, 'add', this.__onTab);
+        // this.listenTo(tabsComps, 'remove', this.__onTabRemove);
       },
 
       __onTab(tab, v, opts = {}) {
