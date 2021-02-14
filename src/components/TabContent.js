@@ -1,7 +1,6 @@
 export const role = 'tabpanel';
 
 export default (dc, config) => {
-  const classKey = config.classTabContent;
 
   dc.addType(config.typeTabContent, {
     model: {
@@ -12,12 +11,9 @@ export default (dc, config) => {
         removable: false,
         highlightable: false,
         attributes: { role },
+        classes: config.classTabContent,
         ...config.tabContentProps
       },
-
-      init() {
-        classKey && this.addClass(classKey);
-      }
     },
   });
 }

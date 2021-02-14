@@ -61,7 +61,7 @@ export default (dc, {
       }
     });
   };
-  const defTabs = ['1', '2', '3'].map(i => ({ type: typeTab, components: `Tab ${i}` }));
+  const defTabs = [1, 2, 3].map(i => ({ type: typeTab }));
 
   dc.addType(type, {
     model: {

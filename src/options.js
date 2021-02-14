@@ -48,8 +48,11 @@ export default {
     // Panels component id
     typeTabContents: 'tab-contents',
 
-    // Default template for new added tab contents
-    templateTabContent: tab => '<div>Tab Content</div>',
+    // Default template for the new added tab
+    templateTab: tab => '<span data-gjs-highlightable="false">Tab x</span>',
+
+    // Default template for the new added tab content
+    templateTabContent: tab => ({ type: 'text', components: 'Tab Content' }),
 
     // Default style for tabs
     style: (config) => `
