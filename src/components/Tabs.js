@@ -50,8 +50,9 @@ export default (dc, {
 
     el.addEventListener('click', (ev) => {
       const { target } = ev;
-      if (matches.call(target, roleTab)) {
+      if (matches.call(target, roleTab) && !ev.__trg) {
         ev.preventDefault();
+        ev.__trg = 1;
         activeTab(target);
         const id = target.getAttribute(selectorTab);
         try {
