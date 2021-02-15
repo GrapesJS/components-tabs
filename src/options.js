@@ -66,6 +66,10 @@ export default {
             margin-right: 10px;
         }
 
+        .${config.classTab}:focus {
+            outline: none;
+        }
+
         .${config.classTab}.${config.classTabActive} {
             background-color: #0d94e6;
             color: white;
