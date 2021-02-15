@@ -12,7 +12,8 @@ export default (dc, {
       command: (ed) => {
         const openSm = ed.Panels.getButton('views', 'open-sm');
         openSm && openSm.set('active', 1);
-        ed.StyleManager.setTarget(`.${config.classTabActive}`, { targetIsClass: 1 })
+        const cls = `.${config.classTab}.${config.classTabActive}`;
+        ed.StyleManager.setTarget(cls, { targetIsClass: 1 })
       },
     },
   ];
