@@ -24,8 +24,10 @@ export default (dc, {
       each(el.querySelectorAll(roleTabContent), i => i.hidden = true);
     }
 
+    const getAllTabs = () => el.querySelectorAll(roleTab);
+
     const activeTab = (tabEl) => {
-      each(el.querySelectorAll(roleTab), (item) => {
+      each(getAllTabs(), (item) => {
         item.className = item.className.replace(classTabActive, '').trim();
         item[attrTabindex] = '-1';
         item[attrSelected] = 'false';
@@ -44,13 +46,29 @@ export default (dc, {
       return hashId && el.querySelector(`${roleTab}[${selectorTab}=${hashId}]`);
     };
 
+    const getSelectedTab = (target) => {
+      let found;
+      each(getAllTabs(), (item) => {
+        if (found) return;
+        if (item.contains(target)) found = item;
+      });
+      return found;
+    };
+
     let tabToActive = el.querySelector(`.${classTabActive}${roleTab}`);
     tabToActive = tabToActive || getTabByHash() || el.querySelector(roleTab);
     tabToActive && activeTab(tabToActive);
 
     el.addEventListener('click', (ev) => {
-      const { target } = ev;
-      if (matches.call(target, roleTab) && !ev.__trg) {
+      let { target } = ev;
+      let found = matches.call(target, roleTab);
+
+      if (!found) {
+        target = getSelectedTab(target);
+        if (target) found = 1;
+      }
+
+      if (found && !ev.__trg && target.className.indexOf(classTabActive) < 0) {
         ev.preventDefault();
         ev.__trg = 1;
         activeTab(target);
