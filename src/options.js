@@ -21,7 +21,7 @@ export default {
     // Default class to use on tab
     classTab: 'tab',
 
-    // Default class to use on tab
+    // Default class to use on tab container
     classTabContainer: 'tab-container',
 
     // Class used on tabs when active
@@ -48,13 +48,13 @@ export default {
     // TabContent component id
     typeTabContent: 'tab-content',
 
-    // Panels component id
+    // TabContents component id
     typeTabContents: 'tab-contents',
 
-    // Default template for the new added tab
+    // Default template for new tabs
     templateTab: tab => '<span data-gjs-highlightable="false">Tab</span>',
 
-    // Default template for the new added tab content
+    // Default template for new tab contents
     templateTabContent: tab => '<div>Tab Content</div>',
 
     // Default style for tabs
