@@ -1,4 +1,4 @@
-export default (editor, { tabsBlock, style, typeTabs }) => {
+export default (editor, { tabsBlock, typeTabs }) => {
   const bm = editor.BlockManager;
 
   tabsBlock && bm.add(typeTabs, {
