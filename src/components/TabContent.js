@@ -12,6 +12,7 @@ export default (dc, config) => {
         highlightable: false,
         attributes: { role },
         classes: config.classTabContent,
+        traits: [],
         ...config.tabContentProps
       },
     },
