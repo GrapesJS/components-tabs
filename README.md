@@ -20,6 +20,7 @@ Simple tabs component plugin for GrapesJS
   * `tab-container` - Component which contains single tabs
   * `tab` - Single tab component
   * `tab-content` - Tab's content
+  * `tab-contents` - Component containing tab contents
 * Blocks
   * `tabs`
 
@@ -29,19 +30,7 @@ Simple tabs component plugin for GrapesJS
 
 ## Options
 
-|Option|Description|Default|
-|-|-|-
-| `tabsBlock` | Object to extend the default tabs block, eg. `{ label: 'Tabs', attributes: { ... } }`. Pass a falsy value to avoid adding the block| `{}` |
-| `tabsProps` | Object to extend the default tabs properties, eg. `{ name: 'My Tabs', droppable: false, ... }` | `{}` |
-| `tabProps` | Object to extend the default tab properties | `{}` |
-| `tabContentProps` | Object to extend the default tab content properties | `{}` |
-| `tabContainerProps` | Object to extend the default tab container properties | `{}` |
-| `classTab` | Default class to use on tab | `tab` |
-| `classTabActive` | Class used on tabs when active | `tab-active` |
-| `classTabContent` | Default class to use on tab content | `tab-content` |
-| `selectorTab` | The attribute used inside tabs as a selector for tab contents | `href` |
-| `templateTabContent` | Default template for new added tab contents | `<div>New Tab Content</div>` |
-| `style` | Default style for tabs | `.tab { ....` (check the source) |
+You can see all the available options [here](https://github.com/artf/grapesjs-tabs/blob/master/src/options.js).
 
 
 
