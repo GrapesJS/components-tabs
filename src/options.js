@@ -66,7 +66,7 @@ export default {
             margin-right: 10px;
         }
 
-        .${config.classTab}.${config.classTabActive} {
+        .${config.classTabActive} {
             background-color: #0d94e6;
             color: white;
         }

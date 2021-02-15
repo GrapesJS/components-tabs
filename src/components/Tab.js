@@ -3,6 +3,20 @@ export const role = 'tab';
 export default (dc, {
   defaultModel, typeTabs, selectorTab, editor, ...config
 }) => {
+  const traits = [
+    {
+      full: 1,
+      type: 'button',
+      label: false,
+      text: 'Style Active',
+      command: (ed) => {
+        const openSm = ed.Panels.getButton('views', 'open-sm');
+        openSm && openSm.set('active', 1);
+        ed.StyleManager.setTarget(`.${config.classTabActive}`, { targetIsClass: 1 })
+      },
+    },
+  ];
+
   dc.addType(config.typeTab, {
     model: {
       defaults: {
@@ -11,6 +25,7 @@ export default (dc, {
         attributes: { role },
         components: config.templateTab,
         classes: config.classTab,
+        traits,
         ...config.tabProps
       },
 
