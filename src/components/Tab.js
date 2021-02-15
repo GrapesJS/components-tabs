@@ -52,15 +52,11 @@ export default (dc, {
       },
 
       getTabContent() {
-        const id = this.getControlId();
+        const id = this.getAttributes()[selectorTab];
         const tabs = this.getTabsType();
         if (!tabs || !id) return;
         const contents = tabs.findContents();
         return contents.filter(c => c.getId() == id)[0];
-      },
-
-      getControlId() {
-        return this.getAttributes()[selectorTab];
       },
 
       clone() {
