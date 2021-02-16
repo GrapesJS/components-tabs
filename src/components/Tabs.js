@@ -7,7 +7,7 @@ export default (dc, {
     const el = this;
     const classTabActive = props.classactive;
     const selectorTab = props.selectortab;
-    const { history } = window;
+    const { history, _isEditor } = window;
     const attrTabindex =  'tabIndex';
     const attrSelected =  'ariaSelected';
     const roleTab = '[role=tab]';
@@ -25,17 +25,18 @@ export default (dc, {
     }
 
     const getAllTabs = () => el.querySelectorAll(roleTab);
+    const upTabIdx = (item, val) => !_isEditor && (item[attrTabindex] = val);
 
     const activeTab = (tabEl) => {
       each(getAllTabs(), (item) => {
         item.className = item.className.replace(classTabActive, '').trim();
-        item[attrTabindex] = '-1';
         item[attrSelected] = 'false';
+        upTabIdx(item, '-1');
       });
       hideContents();
       tabEl.className += ' ' + classTabActive;
-      tabEl[attrTabindex] = '0';
       tabEl[attrSelected] = 'true';
+      upTabIdx(tabEl, '0');
       const tabContentId = tabEl.getAttribute(selectorTab);
       const tabContent = tabContentId && el.querySelector(`#${tabContentId}`);
       tabContent && (tabContent.hidden = false);
