@@ -124,7 +124,7 @@ export default (dc, {
       },
 
       getContentsType() {
-        return this.findType(typeTabContents)[0];
+        return this.findType(typeTabContents)[0] || this;
       },
 
       findTabs() {
