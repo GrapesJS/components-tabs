@@ -3,6 +3,7 @@ export const role = 'tab';
 export default (dc, {
   defaultModel, typeTabs, selectorTab, editor, ...config
 }) => {
+  const prvSel = config.selectorTabPrev;
   const traits = [
     {
       full: 1,
@@ -68,7 +69,8 @@ export default (dc, {
       },
 
       getTabContent() {
-        const id = this.getAttributes()[selectorTab];
+        const attrs = this.getAttributes();
+        const id = attrs[prvSel] || attrs[selectorTab];
         const tabs = this.getTabsType();
         if (!tabs || !id) return;
         const contents = tabs.findContents();

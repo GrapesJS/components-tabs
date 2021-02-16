@@ -7,6 +7,7 @@ export default (dc, {
     const el = this;
     const classTabActive = props.classactive;
     const selectorTab = props.selectortab;
+    const prevsel = props.prevsel;
     const { history, _isEditor } = window;
     const attrTabindex =  'tabIndex';
     const attrSelected =  'ariaSelected';
@@ -24,6 +25,11 @@ export default (dc, {
       each(el.querySelectorAll(roleTabContent), i => i.hidden = true);
     }
 
+    const getTabId = (item) => {
+      return (prevsel && item.getAttribute(prevsel)) || item.getAttribute(selectorTab);
+    }
+
+    const qS = (elem, qs) => elem.querySelector(qs);
     const getAllTabs = () => el.querySelectorAll(roleTab);
     const upTabIdx = (item, val) => !_isEditor && (item[attrTabindex] = val);
 
@@ -37,14 +43,15 @@ export default (dc, {
       tabEl.className += ' ' + classTabActive;
       tabEl[attrSelected] = 'true';
       upTabIdx(tabEl, '0');
-      const tabContentId = tabEl.getAttribute(selectorTab);
-      const tabContent = tabContentId && el.querySelector(`#${tabContentId}`);
+      const tabContentId = getTabId(tabEl);
+      const tabContent = tabContentId && qS(el, `#${tabContentId}`);
       tabContent && (tabContent.hidden = false);
     };
 
     const getTabByHash = () => {
       const hashId = (location.hash || '').replace('#', '');
-      return hashId && el.querySelector(`${roleTab}[${selectorTab}=${hashId}]`);
+      const qrStr = att => `${roleTab}[${att}=${hashId}]`;
+      return hashId && (qS(el, qrStr(prevsel)) || qS(el, qrStr(selectorTab)));
     };
 
     const getSelectedTab = (target) => {
@@ -56,8 +63,8 @@ export default (dc, {
       return found;
     };
 
-    let tabToActive = el.querySelector(`.${classTabActive}${roleTab}`);
-    tabToActive = tabToActive || getTabByHash() || el.querySelector(roleTab);
+    let tabToActive = qS(el, `.${classTabActive}${roleTab}`);
+    tabToActive = tabToActive || getTabByHash() || qS(el, roleTab);
     tabToActive && activeTab(tabToActive);
 
     el.addEventListener('click', (ev) => {
@@ -73,7 +80,7 @@ export default (dc, {
         ev.preventDefault();
         ev.__trg = 1;
         activeTab(target);
-        const id = target.getAttribute(selectorTab);
+        const id = getTabId(target);
         try {
           history && history.pushState(null, null, `#${id}`);
         } catch (e) {}
@@ -100,6 +107,7 @@ export default (dc, {
         name: 'Tabs',
         classactive: config.classTabActive,
         selectortab: config.selectorTab,
+        prevsel: config.selectorTabPrev,
         'script-props': ['classactive', 'selectortab'],
         script,
         traits,
