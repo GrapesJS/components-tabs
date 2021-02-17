@@ -7,7 +7,6 @@ export default (dc, {
     const el = this;
     const classTabActive = props.classactive;
     const selectorTab = props.selectortab;
-    const prevsel = props.prevsel;
     const { history, _isEditor } = window;
     const attrTabindex =  'tabIndex';
     const attrSelected =  'ariaSelected';
@@ -25,10 +24,7 @@ export default (dc, {
       each(el.querySelectorAll(roleTabContent), i => i.hidden = true);
     }
 
-    const getTabId = (item) => {
-      return (prevsel && item.getAttribute(prevsel)) || item.getAttribute(selectorTab);
-    }
-
+    const getTabId = item => item.getAttribute(selectorTab)
     const qS = (elem, qs) => elem.querySelector(qs);
     const getAllTabs = () => el.querySelectorAll(roleTab);
     const upTabIdx = (item, val) => !_isEditor && (item[attrTabindex] = val);
@@ -51,7 +47,7 @@ export default (dc, {
     const getTabByHash = () => {
       const hashId = (location.hash || '').replace('#', '');
       const qrStr = att => `${roleTab}[${att}=${hashId}]`;
-      return hashId && (qS(el, qrStr(prevsel)) || qS(el, qrStr(selectorTab)));
+      return hashId && qS(el, qrStr(selectorTab));
     };
 
     const getSelectedTab = (target) => {
@@ -107,7 +103,6 @@ export default (dc, {
         name: 'Tabs',
         classactive: config.classTabActive,
         selectortab: config.selectorTab,
-        prevsel: config.selectorTabPrev,
         'script-props': ['classactive', 'selectortab'],
         script,
         traits,

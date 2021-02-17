@@ -36,9 +36,6 @@ export default {
     // The attribute used inside tabs as a selector for tab contents
     selectorTab: 'aria-controls',
 
-    // Special option, used mainly to support previous plugin version
-    selectorTabPrev: 'href',
-
     // Tabs component id
     typeTabs: 'tabs',
 
