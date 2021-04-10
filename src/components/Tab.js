@@ -3,6 +3,7 @@ export const role = 'tab';
 export default (dc, {
   defaultModel, typeTabs, selectorTab, editor, ...config
 }) => {
+  const prevSelectorTab = 'data-prev';
   const traits = [
     {
       full: 1,
@@ -17,6 +18,7 @@ export default (dc, {
       },
     },
   ];
+  const getPrevCntId = cmp => cmp.getAttributes()[prevSelectorTab];
 
   dc.addType(config.typeTab, {
     model: {
@@ -37,6 +39,15 @@ export default (dc, {
       __initTab() {
         if (this.tabContent) return;
         let content = this.getTabContent();
+
+        // In case the content was found via previous id (cloned from parent)
+        if (content && getPrevCntId(content)) {
+          const id = content.getId();
+          const tabId = this.getId();
+          content.addAttributes({ id, 'aria-labelledby': tabId, hidden: true });
+          content.removeAttributes(prevSelectorTab);
+          this.addAttributes({ [selectorTab]: id, id: tabId });
+        }
 
         // If the tab content was found I'll attach it to the tab model
         // otherwise I'll create e new one
@@ -72,12 +83,20 @@ export default (dc, {
         const tabs = this.getTabsType();
         if (!tabs || !id) return;
         const contents = tabs.findContents();
-        return contents.filter(c => c.getId() == id)[0];
+        const content = contents.filter(c =>
+          c.getId() == id || getPrevCntId(c) == id
+        )[0];
+        return content;
       },
 
-      clone() {
+      clone(opts = {}) {
+        const fromParent = opts._inner;
+        if (fromParent) {
+          const tabCont = this.getTabContent();
+          tabCont && tabCont.addAttributes({ [prevSelectorTab]: tabCont.getId() });
+        }
         const cloned = defaultModel.prototype.clone.apply(this, arguments);
-        cloned.addAttributes({ [selectorTab]: '' });
+        !fromParent && cloned.addAttributes({ [selectorTab]: '' });
         return cloned;
       }
     },
