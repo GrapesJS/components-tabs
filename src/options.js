@@ -4,7 +4,7 @@ export default {
     tabsBlock: {},
 
     // Object to extend the default tabs properties, eg. `{ name: 'My Tabs', droppable: false, ... }`
-    tabsProps: {},
+    tabsProps: { attributes: { class: 'tabs-main-container' } },
 
     // Object to extend the default tab container properties
     tabContainerProps: {},
@@ -59,11 +59,37 @@ export default {
 
     // Default style for tabs
     style: (config) => `
+        .tabs-main-container {
+            box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+            max-width: 760px;
+            margin: 30px auto;
+        }
+
         .${config.classTab} {
-            padding: 7px 14px;
-            display: inline-block;
+            padding: 10px 5px;
+            display: flex;
             border-radius: 3px;
-            margin-right: 10px;
+            flex: 0 1 100%;
+            cursor: pointer;
+            min-width: 40%;
+            text-transform: uppercase;
+            background-color: #f5f5f5;
+            border: 1px solid #ddd;
+            font-family: Inter;
+            font-size: 12px;
+            line-height: 1.6;
+            // letter-spacing: 0.7px;
+            font-weight: 700;
+            min-height: 80px;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            word-break: break-word;
+        }
+
+
+        .${config.classTab}:hover {
+            background-color: #EFEFEF;
         }
 
         .${config.classTab}:focus {
@@ -71,21 +97,42 @@ export default {
         }
 
         .${config.classTab}.${config.classTabActive} {
-            background-color: #0d94e6;
-            color: white;
+            background-color: #ffffff;
+            color: #009D62;
+            border-bottom-color: transparent;
         }
 
         .${config.classTabContainer} {
-            display: inline-block;
+            display: flex;
+            overflow: auto;
         }
 
         .${config.classTabContent} {
-            animation: fadeEffect 1s;
+            animation: fadeEffect 0.5s;
+            padding: 20px 30px 35px;
+            font-size: 16px;
+            font-family: Inter;
+            word-break: break-word;
         }
 
         .${config.classTabContents} {
             min-height: 100px;
             padding: 10px;
+            font-family: Inter;
+        }
+
+        @media (min-width: 480px) {
+            .${config.classTab} {
+                min-width: 30%;
+                padding: 10px 20px;
+            }
+        }
+
+        @media (min-width: 720px) {
+            .${config.classTab} {
+                min-width: 23%;
+                padding: 10px 20px;
+            }
         }
 
         @keyframes fadeEffect {
