@@ -24,19 +24,56 @@
 
 
     <script type="text/javascript">
-      window.editor = grapesjs.init({
-        height: '100%',
-        showOffsets: 1,
-        noticeOnUnload: 0,
-        storageManager: { autoload: 0 },
-        container: '#gjs',
-        fromElement: true,
+      // Wait for the plugin to be injected by the dev server
+      window.onload = () => {
+	      window.editor = grapesjs.init({
+	        height: '100%',
+	        showOffsets: 1,
+	        noticeOnUnload: 0,
+	        storageManager: { autoload: 0 },
+	        container: '#gjs',
+	        fromElement: true,
 
-        plugins: ['grapesjs-tabs'],
-        pluginsOpts: {
-          'grapesjs-tabs': {}
-        }
-      });
+	        plugins: ['grapesjs-tabs'],
+	        pluginsOpts: {
+	          'grapesjs-tabs': {
+              /*templateTab: '<span data-gjs-highlightable="false">Tab 444</span>',
+              templateTabContent: '<div>Tab Content</div>',
+
+              style: ({ classTab, classTabActive, classTabContent, classTabContainer }) => `
+            .${classTabContainer} {
+              display: flex;
+              gap: 8px;
+              padding: 16px;
+              background-color: #f5f5f5;
+              border-radius: 4px;
+            }
+            
+            .${classTab} {
+              padding: 8px 16px;
+              border: none;
+              background-color: #ffe0e0;
+              cursor: pointer;
+              border-radius: 4px;
+              transition: all 0.3s ease;
+            }
+            
+            .${classTab}.${classTabActive} {
+              background-color: #ff96f3;
+              color: white;
+            }
+            
+            .${classTabContent} {
+              padding: 20px;
+              border: 1px solid #e0e0e0;
+              margin-top: 16px;
+              border-radius: 4px;
+            }
+          `,*/
+            }
+	        }
+	      });
+      };
     </script>
   </body>
 </html>

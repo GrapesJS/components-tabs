@@ -1,8 +1,12 @@
+import type { Editor } from 'grapesjs';
+import type { TabContainerConfig } from '../types';
+
 export const role = 'tablist';
 
-export default (dc, config) => {
+export default (editor: Editor, config: TabContainerConfig): void => {
+  const { Components } = editor;
 
-  dc.addType(config.typeTabContainer, {
+  Components.addType(config.typeTabContainer, {
     model: {
       defaults: {
         name: 'Tab Container',
