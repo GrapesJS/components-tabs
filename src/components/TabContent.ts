@@ -1,8 +1,12 @@
+import type { Editor } from 'grapesjs';
+import type { TabContentConfig } from '../types';
+
 export const role = 'tabpanel';
 
-export default (dc, config) => {
+export default (editor: Editor, config: TabContentConfig): void => {
+  const { Components } = editor;
 
-  dc.addType(config.typeTabContent, {
+  Components.addType(config.typeTabContent, {
     model: {
       defaults: {
         name: 'Tab Content',
@@ -14,7 +18,7 @@ export default (dc, config) => {
         classes: config.classTabContent,
         traits: [],
         ...config.tabContentProps
-      },
+      }
     },
   });
 }
