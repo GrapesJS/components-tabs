@@ -1,4 +1,4 @@
-import type { TabsOptions, TabTemplate, TabTemplateProps } from "./types";
+import type { TabsOptions, TabTemplate, TabTemplateProps } from './types';
 
 const defaultStyle = (config: TabsOptions): string => `
   .${config.classTab} {
@@ -46,38 +46,34 @@ const defaultOptions: TabsOptions = {
   tabContentsProps: {},
 
   // Class names
-  classTab: "tab",
-  classTabContainer: "tab-container",
-  classTabActive: "tab-active",
-  classTabContent: "tab-content",
-  classTabContents: "tab-contents",
+  classTab: 'tab',
+  classTabContainer: 'tab-container',
+  classTabActive: 'tab-active',
+  classTabContent: 'tab-content',
+  classTabContents: 'tab-contents',
 
   // Selectors and types
-  selectorTab: "aria-controls",
-  typeTabs: "tabs",
-  typeTabContainer: "tab-container",
-  typeTab: "tab",
-  typeTabContent: "tab-content",
-  typeTabContents: "tab-contents",
+  selectorTab: 'aria-controls',
+  typeTabs: 'tabs',
+  typeTabContainer: 'tab-container',
+  typeTab: 'tab',
+  typeTabContent: 'tab-content',
+  typeTabContents: 'tab-contents',
 
   // Templates
-  templateTab: ({ index }) =>
-    `<span data-gjs-highlightable="false">Tab ${index}</span>`,
+  templateTab: ({ index }) => `<span data-gjs-highlightable="false">Tab ${index}</span>`,
   templateTabContent: ({ index }) => `<div>Tab Content ${index}</div>`,
 
   // Style
   style: defaultStyle,
 };
 
-export const resolveTemplate = (
-  template: TabTemplate | undefined,
-  props: TabTemplateProps
-): string | undefined => {
+export const resolveTemplate = (template: TabTemplate | undefined, props: TabTemplateProps): string | undefined => {
   if (!template) {
     return undefined;
   }
 
-  if (typeof template === "function") {
+  if (typeof template === 'function') {
     return template(props);
   }
   return template;

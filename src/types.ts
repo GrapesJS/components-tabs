@@ -1,4 +1,4 @@
-import type { ComponentDefinition } from "grapesjs";
+import type { ComponentDefinition } from 'grapesjs';
 
 export interface TabsOptions {
   // Block and props settings
@@ -89,7 +89,7 @@ export interface TabComponentProps {
 export interface TabAttributes {
   role?: string;
   id?: string;
-  "aria-labelledby"?: string;
+  'aria-labelledby'?: string;
   hidden?: boolean;
   [key: string]: any;
 }

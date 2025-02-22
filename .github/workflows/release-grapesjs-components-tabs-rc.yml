@@ -1,0 +1,24 @@
+name: Publish GrapesJS Components-Tabs rc
+on:
+  push:
+    branches: [main]
+
+jobs:
+  publish:
+    if: "contains(github.event.head_commit.message, 'Release GrapesJS components-tabs rc:')"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup project
+        uses: ./.github/actions/setup-project
+      - name: Build components-tabs
+        run: pnpm run build
+      - name: Check components-tabs TS
+        run: pnpm run ts:check
+      - name: Publish to npm
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          echo "//registry.npmjs.org/:_authToken=${NODE_AUTH_TOKEN}" >> .npmrc
+          pnpm publish:rc
