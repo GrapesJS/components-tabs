@@ -5,7 +5,7 @@ on:
 
 jobs:
   publish:
-    if: "contains(github.event.head_commit.message, 'Release GrapesJS components-tabs rc:')"
+    if: "contains(github.event.head_commit.message, 'Release GrapesJS Components Tabs rc:')"
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -13,12 +13,12 @@ jobs:
       - name: Setup project
         uses: ./.github/actions/setup-project
       - name: Build components-tabs
-        run: pnpm run build
+        run: npm run build
       - name: Check components-tabs TS
-        run: pnpm run ts:check
+        run: npm run ts:check
       - name: Publish to npm
         env:
           NODE_AUTH_TOKEN: ${{ secrets.ORG_NPM_TOKEN }}
         run: |
           echo "//registry.npmjs.org/:_authToken=${NODE_AUTH_TOKEN}" >> .npmrc
-          pnpm publish:rc
+          npm run publish:rc

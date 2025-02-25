@@ -38,3 +38,4 @@ test
 *.md
 webpack.config.js
 tsconfig.json
+tsconfig.ci.json

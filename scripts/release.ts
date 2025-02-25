@@ -2,7 +2,7 @@ import fs from 'fs';
 import { resolve } from 'path';
 import { runCommand } from './common';
 
-const grapesJSCompontentsTabsPath = resolve(__dirname, '.');
+const grapesJSCompontentsTabsPath = resolve(__dirname, '../');
 
 async function prepareReleaseGrapesJSompontentsTabs() {
   try {
@@ -16,7 +16,7 @@ async function prepareReleaseGrapesJSompontentsTabs() {
 
     // Increment the Components Tabs version
     const versionCmd = releaseTag === 'latest' ? 'patch' : `prerelease --preid ${releaseTag}`;
-    runCommand(`npm exec npm version ${versionCmd} --no-git-tag-version --no-commit-hooks`);
+    runCommand(`npm version ${versionCmd} --no-git-tag-version --no-commit-hooks`);
 
     // Create a new release branch
     const newVersion = JSON.parse(fs.readFileSync(`${grapesJSCompontentsTabsPath}/package.json`, 'utf8')).version;

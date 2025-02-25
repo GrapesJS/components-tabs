@@ -31,7 +31,7 @@ You can see all the available options [here](https://github.com/artf/grapesjs-ta
 - CDN
   - `https://unpkg.com/grapesjs-tabs`
 - NPM
-  - `pnpm i grapesjs-tabs`
+  - `npm i grapesjs-tabs`
 - GIT
   - `git clone https://github.com/artf/grapesjs-tabs.git`
 
@@ -70,13 +70,13 @@ $ cd grapesjs-tabs
 Install dependencies
 
 ```sh
-$ pnpm i
+$ npm i
 ```
 
 Start the development server
 
 ```sh
-$ pnpm start
+$ npm start
 ```
 
 ## License
