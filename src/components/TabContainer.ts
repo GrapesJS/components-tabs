@@ -17,8 +17,8 @@ export default (editor: Editor, config: TabContainerConfig): void => {
         highlightable: false,
         attributes: { role },
         classes: config.classTabContainer,
-        ...config.tabContainerProps
+        ...config.tabContainerProps,
       },
     },
   });
-}
+};

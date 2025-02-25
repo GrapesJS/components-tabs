@@ -1,14 +1,7 @@
-import type { Editor, Component } from "grapesjs";
-import type { TabComponent } from "./Tab";
-import type {
-  TabsOptions,
-  TabsConfig,
-  TabComponentProps,
-  CustomWindow,
-  TabTemplate,
-} from "../types";
-import { resolveTemplate } from "../options";
-import components from ".";
+import type { Editor, Component } from 'grapesjs';
+import type { TabComponent } from './Tab';
+import type { TabsOptions, TabComponentProps, CustomWindow, TabTemplate } from '../types';
+import { resolveTemplate } from '../options';
 
 interface TabsComponent extends Component {
   addTab(): void;
@@ -27,9 +20,9 @@ export default (editor: Editor, config: TabsOptions): void => {
     const selectorTab = props.selectortab;
     const { history } = window;
     const _isEditor = (window as CustomWindow)._isEditor;
-    const attrSelected = "ariaSelected";
-    const roleTab = "[role=tab]";
-    const roleTabContent = "[role=tabpanel]";
+    const attrSelected = 'ariaSelected';
+    const roleTab = '[role=tab]';
+    const roleTabContent = '[role=tabpanel]';
     const { body, location } = document;
 
     const matches =
@@ -38,10 +31,7 @@ export default (editor: Editor, config: TabsOptions): void => {
       (body as any).mozMatchesSelector ||
       (body as any).msMatchesSelector;
 
-    const each = (
-      items: NodeListOf<HTMLElement>,
-      clb: (item: HTMLElement, index: number) => void
-    ): void => {
+    const each = (items: NodeListOf<HTMLElement>, clb: (item: HTMLElement, index: number) => void): void => {
       Array.from(items).forEach(clb);
     };
 
@@ -51,14 +41,11 @@ export default (editor: Editor, config: TabsOptions): void => {
       });
     };
 
-    const getTabId = (item: HTMLElement): string =>
-      item.getAttribute(selectorTab) || "";
+    const getTabId = (item: HTMLElement): string => item.getAttribute(selectorTab) || '';
 
-    const qS = (elem: HTMLElement, qs: string): HTMLElement | null =>
-      elem.querySelector(qs);
+    const qS = (elem: HTMLElement, qs: string): HTMLElement | null => elem.querySelector(qs);
 
-    const getAllTabs = (): NodeListOf<HTMLElement> =>
-      el.querySelectorAll(roleTab);
+    const getAllTabs = (): NodeListOf<HTMLElement> => el.querySelectorAll(roleTab);
 
     const upTabIdx = (item: HTMLElement, val: string): void => {
       if (!_isEditor) {
@@ -68,14 +55,14 @@ export default (editor: Editor, config: TabsOptions): void => {
 
     const activeTab = (tabEl: HTMLElement): void => {
       each(getAllTabs(), (item) => {
-        item.className = item.className.replace(classTabActive, "").trim();
-        item.setAttribute(attrSelected, "false");
-        upTabIdx(item, "-1");
+        item.className = item.className.replace(classTabActive, '').trim();
+        item.setAttribute(attrSelected, 'false');
+        upTabIdx(item, '-1');
       });
       hideContents();
-      tabEl.className += " " + classTabActive;
-      tabEl.setAttribute(attrSelected, "true");
-      upTabIdx(tabEl, "0");
+      tabEl.className += ' ' + classTabActive;
+      tabEl.setAttribute(attrSelected, 'true');
+      upTabIdx(tabEl, '0');
       const tabContentId = getTabId(tabEl);
       const tabContent = tabContentId && qS(el, `#${tabContentId}`);
       if (tabContent) {
@@ -84,7 +71,7 @@ export default (editor: Editor, config: TabsOptions): void => {
     };
 
     const getTabByHash = (): Element | null => {
-      const hashId = (location.hash || "").replace("#", "");
+      const hashId = (location.hash || '').replace('#', '');
       const qrStr = (att: string): string => `${roleTab}[${att}=${hashId}]`;
       return hashId ? qS(el, qrStr(selectorTab)) : null;
     };
@@ -93,17 +80,11 @@ export default (editor: Editor, config: TabsOptions): void => {
       return Array.from(getAllTabs()).find((item) => item.contains(target));
     };
 
-    let tabToActive = qS(
-      el,
-      `.${classTabActive}${roleTab}`
-    ) as HTMLElement | null;
-    tabToActive =
-      tabToActive ||
-      (getTabByHash() as HTMLElement | null) ||
-      (qS(el, roleTab) as HTMLElement | null);
+    let tabToActive = qS(el, `.${classTabActive}${roleTab}`) as HTMLElement | null;
+    tabToActive = tabToActive || (getTabByHash() as HTMLElement | null) || (qS(el, roleTab) as HTMLElement | null);
     if (tabToActive) activeTab(tabToActive as HTMLElement);
 
-    el.addEventListener("click", (ev: MouseEvent & { __trg?: number }) => {
+    el.addEventListener('click', (ev: MouseEvent & { __trg?: number }) => {
       let target = ev.target as HTMLElement | null;
       if (!target) return;
 
@@ -117,23 +98,21 @@ export default (editor: Editor, config: TabsOptions): void => {
         }
       }
 
-      if (
-        found &&
-        !ev.__trg &&
-        (target as HTMLElement).className.indexOf(classTabActive) < 0
-      ) {
+      if (found && !ev.__trg && (target as HTMLElement).className.indexOf(classTabActive) < 0) {
         ev.preventDefault();
         ev.__trg = 1;
         activeTab(target as HTMLElement);
         const id = getTabId(target as HTMLElement);
         try {
-          history?.pushState(null, "", `#${id}`);
-        } catch (e) {}
+          history?.pushState(null, '', `#${id}`);
+        } catch (e) {
+          console.error('History API is not supported', e);
+        }
       }
     });
   };
 
-  const styleText = config.style ? config.style(config) : "";
+  const styleText = config.style ? config.style(config) : '';
 
   const defTabs = [1, 2, 3].map((i) => ({
     type: config.typeTab,
@@ -143,16 +122,16 @@ export default (editor: Editor, config: TabsOptions): void => {
   Components.addType(config.typeTabs, {
     model: {
       defaults: {
-        name: "Tabs",
+        name: 'Tabs',
         classactive: config.classTabActive,
         selectortab: config.selectorTab,
-        "script-props": ["classactive", "selectortab"],
+        'script-props': ['classactive', 'selectortab'],
         script,
         traits: [
           {
-            type: "button",
-            label: "Add Tab",
-            text: "Add Tab",
+            type: 'button',
+            label: 'Add Tab',
+            text: 'Add Tab',
             full: true,
             command: (editor: Editor) => {
               const selected = editor.getSelected() as TabsComponent;
@@ -160,10 +139,7 @@ export default (editor: Editor, config: TabsOptions): void => {
             },
           },
         ],
-        components: [
-          { type: config.typeTabContainer, components: defTabs },
-          { type: config.typeTabContents },
-        ],
+        components: [{ type: config.typeTabContainer, components: defTabs }, { type: config.typeTabContents }],
         styles: styleText,
         ...config.tabsProps,
       },
@@ -182,14 +158,16 @@ export default (editor: Editor, config: TabsOptions): void => {
         const container = component.getTabContainerType();
         let tabCount = component.findTabs().length;
 
-        this.listenTo(container?.components(), "add", (tab: TabComponent) => {
+        this.listenTo(container?.components(), 'add', (tab: TabComponent) => {
           tabCount++;
           tab.__initTab?.(tabCount);
         });
       },
 
       __onTab(tab: TabComponent, index: number, v: any, opts: any = {}) {
-        !opts.avoidStore && !opts.temporary && tab.__initTab(index);
+        if (!opts.avoidStore && !opts.temporary) {
+          tab.__initTab(index);
+        }
       },
 
       getTabContainerType() {
@@ -218,7 +196,7 @@ export default (editor: Editor, config: TabsOptions): void => {
         };
 
         const finalContent = content
-          ? typeof content === "function"
+          ? typeof content === 'function'
             ? content(templateProps)
             : content
           : resolveTemplate(config.templateTab, templateProps);

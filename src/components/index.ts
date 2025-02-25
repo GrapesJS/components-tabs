@@ -1,10 +1,10 @@
-import type { Editor } from "grapesjs";
-import type { TabsOptions } from "../types";
-import Tab from "./Tab";
-import Tabs from "./Tabs";
-import TabContent from "./TabContent";
-import TabContents from "./TabContents";
-import TabContainer from "./TabContainer";
+import type { Editor } from 'grapesjs';
+import type { TabsOptions } from '../types';
+import Tab from './Tab';
+import Tabs from './Tabs';
+import TabContent from './TabContent';
+import TabContents from './TabContents';
+import TabContainer from './TabContainer';
 
 type ComponentLoader = (editor: Editor, config: TabsOptions) => void;
 
@@ -20,7 +20,7 @@ const components: ComponentLoader[] = [
 export default (editor: Editor, config: TabsOptions): void => {
   const opts = {
     ...config,
-    defaultModel: editor.DomComponents.getType("default").model,
+    defaultModel: editor.DomComponents.getType('default').model,
     editor,
   };
 

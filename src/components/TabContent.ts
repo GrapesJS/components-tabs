@@ -17,8 +17,8 @@ export default (editor: Editor, config: TabContentConfig): void => {
         attributes: { role },
         classes: config.classTabContent,
         traits: [],
-        ...config.tabContentProps
-      }
+        ...config.tabContentProps,
+      },
     },
   });
-}
+};

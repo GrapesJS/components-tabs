@@ -1,5 +1,5 @@
-import type { Editor } from "grapesjs";
-import type { TabContentsConfig } from "../types";
+import type { Editor } from 'grapesjs';
+import type { TabContentsConfig } from '../types';
 
 export default (editor: Editor, config: TabContentsConfig): void => {
   const { Components } = editor;
@@ -7,7 +7,7 @@ export default (editor: Editor, config: TabContentsConfig): void => {
   Components.addType(config.typeTabContents, {
     model: {
       defaults: {
-        name: "Tab Contents",
+        name: 'Tab Contents',
         draggable: false,
         droppable: false,
         copyable: false,
