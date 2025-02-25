@@ -1,6 +1,6 @@
 {
   "name": "grapesjs-tabs",
-  "version": "1.0.13",
+  "version": "1.0.16",
   "description": "Simple tabs component plugin for GrapesJS",
   "main": "dist/index.js",
   "scripts": {
@@ -10,10 +10,10 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "ts:check": "tsc --noEmit ",
-    "release:latest": "ts-node scripts/release latest",
-    "release:rc": "ts-node scripts/release rc",
-    "publish:latest": "pnpm publish --access public",
-    "publish:rc": "pnpm publish --tag rc --access public",
+    "release:latest": "ts-node -P tsconfig.ci.json scripts/release latest",
+    "release:rc": "ts-node -P tsconfig.ci.json scripts/release rc",
+    "publish:latest": "npm publish --no-git-checks --access public",
+    "publish:rc": "npm publish --no-git-checks --tag rc --access public",
     "danger": "danger local"
   },
   "repository": {
@@ -34,6 +34,7 @@
     "prettier": "3.3.1",
     "ts-node": "^10.9.2",
     "typescript": "5.0.2",
+    "@types/node": "^20.3.3",
     "eslint": "8.57.0",
     "eslint-config-prettier": "9.1.0",
     "eslint-plugin-prettier": "5.1.3",

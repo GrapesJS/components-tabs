@@ -12,8 +12,8 @@ jobs:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/setup-project
       - name: TS Check
-        run: pnpm run ts:check
+        run: npm run ts:check
       - name: Lint
-        run: pnpm run lint
+        run: npm run lint
       - name: Format Check
-        run: pnpm run format:check
+        run: npm run format:check
