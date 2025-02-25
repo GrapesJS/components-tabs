@@ -1,9 +1,9 @@
 name: GrapesJS Plugin Quality Checks
 on:
   push:
-    branches: [main]
+    branches: [master]
   pull_request:
-    branches: [main]
+    branches: [master]
 
 jobs:
   quality-checks:
